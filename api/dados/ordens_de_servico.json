@@ -1,0 +1,47 @@
+[
+  {
+    "id": "OS-2481",
+    "servico": "Reparo com solda em vaso de pressão V-301",
+    "resumo_equipe": "Equipe sugerida · 3 profissionais",
+    "local": "Plataforma P-XX",
+    "ambiente": "offshore",
+    "prazo": "2026-10-18",
+    "estado": "aguardando_aprovacao"
+  },
+  {
+    "id": "OS-2490",
+    "servico": "Limpeza interna de tanque de armazenamento",
+    "resumo_equipe": "Exige NR-33 · espaço confinado",
+    "local": "Base Macaé",
+    "ambiente": "onshore",
+    "prazo": "2026-10-20",
+    "estado": "sem_profissional_elegivel"
+  },
+  {
+    "id": "OS-2479",
+    "servico": "Inspeção de válvulas de segurança",
+    "resumo_equipe": "Equipe de 2 profissionais",
+    "local": "Plataforma P-YY",
+    "ambiente": "offshore",
+    "prazo": "2026-10-22",
+    "estado": "equipe_aprovada"
+  },
+  {
+    "id": "OS-2476",
+    "servico": "Pintura anticorrosiva de tubulação",
+    "resumo_equipe": "Equipe de 4 profissionais",
+    "local": "Base Macaé",
+    "ambiente": "onshore",
+    "prazo": "2026-10-25",
+    "estado": "em_execucao"
+  },
+  {
+    "id": "OS-2472",
+    "servico": "Manutenção elétrica em painel de distribuição",
+    "resumo_equipe": "Registro de execução enviado",
+    "local": "Plataforma P-XX",
+    "ambiente": "offshore",
+    "prazo": "2026-10-15",
+    "estado": "concluida"
+  }
+]

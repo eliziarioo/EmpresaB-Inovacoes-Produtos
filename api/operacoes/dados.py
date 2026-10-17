@@ -1,0 +1,9 @@
+import json
+
+from django.conf import settings
+
+
+def carregar_dados(nome_arquivo):
+    caminho = settings.BASE_DIR / "dados" / nome_arquivo
+    with open(caminho, encoding="utf-8") as arquivo:
+        return json.load(arquivo)

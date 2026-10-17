@@ -1,6 +1,7 @@
 import re
 import unicodedata
 from datetime import date, timedelta
+from itertools import combinations
 
 from .dados import carregar_dados, obter_estado
 
@@ -12,11 +13,63 @@ def data_de_referencia():
     return date.fromisoformat(base_do_painel["data_referencia"])
 
 
+FUNCOES_DO_PAINEL = [
+    ("soldador", "Soldadores"),
+    ("caldeireiro", "Caldeireiros"),
+    ("eletricista", "Eletricistas"),
+    ("pintor industrial", "Pintores industriais"),
+    ("engenharia de inspeção", "Engenharia de inspeção"),
+]
+
+
+def se_sobrepoe(inicio_a, fim_a, inicio_b, fim_b):
+    return inicio_a <= fim_b and inicio_b <= fim_a
+
+
+def disponivel_na_semana(profissional, hoje):
+    fim_da_semana = hoje + timedelta(days=6)
+    for alocacao in profissional["alocacoes"]:
+        if alocacao["status"] != "confirmada":
+            continue
+        inicio = date.fromisoformat(alocacao["inicio"])
+        fim = date.fromisoformat(alocacao["fim"])
+        if se_sobrepoe(hoje, fim_da_semana, inicio, fim):
+            return False
+    return True
+
+
+def contar_disponiveis_por_funcao():
+    hoje = data_de_referencia()
+    profissionais = carregar_dados("profissionais.json")
+
+    por_funcao = []
+    total_disponiveis = 0
+    for funcao, rotulo in FUNCOES_DO_PAINEL:
+        do_grupo = [p for p in profissionais if p["funcao"] == funcao]
+        livres = sum(1 for p in do_grupo if disponivel_na_semana(p, hoje))
+        por_funcao.append({
+            "funcao": funcao,
+            "rotulo": rotulo,
+            "disponiveis": livres,
+            "total": len(do_grupo),
+        })
+        total_disponiveis += livres
+
+    return {
+        "semana": f"{total_disponiveis} de {len(profissionais)} nesta semana",
+        "disponiveis": total_disponiveis,
+        "total": len(profissionais),
+        "por_funcao": por_funcao,
+    }
+
+
 def montar_alertas():
     hoje = data_de_referencia()
     profissionais = carregar_dados("profissionais.json")
 
     alertas_de_bloqueio = []
+    alertas_sem_elegivel = []
+    alertas_de_conflito = []
     alertas_de_vencimento = []
 
     for profissional in profissionais:
@@ -31,7 +84,6 @@ def montar_alertas():
                     restricao = "offshore"
                 else:
                     restricao = f"que exigem {codigo}"
-
                 alertas_de_bloqueio.append({
                     "tipo": "bloqueio",
                     "titulo": "Bloqueio",
@@ -43,7 +95,6 @@ def montar_alertas():
                     "profissional_id": profissional["id"],
                     "ordem_id": None,
                 })
-
             elif dias_restantes <= DIAS_PARA_VENCIMENTO_PROXIMO:
                 alertas_de_vencimento.append({
                     "tipo": "vencimento_proximo",
@@ -57,7 +108,53 @@ def montar_alertas():
                     "ordem_id": None,
                 })
 
-    return alertas_de_bloqueio + alertas_de_vencimento
+        indicadas = [a for a in profissional["alocacoes"] if a["status"] == "indicada"]
+        for alocacao_a, alocacao_b in combinations(indicadas, 2):
+            inicio_a = date.fromisoformat(alocacao_a["inicio"])
+            fim_a = date.fromisoformat(alocacao_a["fim"])
+            inicio_b = date.fromisoformat(alocacao_b["inicio"])
+            fim_b = date.fromisoformat(alocacao_b["fim"])
+            if not se_sobrepoe(inicio_a, fim_a, inicio_b, fim_b):
+                continue
+
+            inicio = max(inicio_a, inicio_b)
+            fim = min(fim_a, fim_b)
+            if inicio == fim:
+                quando = f"no dia {inicio.strftime('%d/%m')}"
+            else:
+                quando = f"entre {inicio.strftime('%d/%m')} e {fim.strftime('%d/%m')}"
+            indicada = "indicada" if profissional["genero"] == "f" else "indicado"
+
+            alertas_de_conflito.append({
+                "tipo": "conflito_agenda",
+                "titulo": "Conflito de agenda",
+                "gravidade": "atencao",
+                "mensagem": (
+                    f"{profissional['nome']} está {indicada} para {alocacao_a['ordem_id']} e "
+                    f"{alocacao_b['ordem_id']} {quando}."
+                ),
+                "profissional_id": profissional["id"],
+                "ordem_id": None,
+            })
+
+    for ordem in obter_estado()["ordens"]:
+        if ordem["estado"] != "sem_profissional_elegivel":
+            continue
+        nomes = " e ".join(r["nome"] for r in montar_requisitos(ordem.get("interpretacao")))
+        if nomes:
+            exigencia = f"exige {nomes}"
+        else:
+            exigencia = "não tem equipe elegível"
+        alertas_sem_elegivel.append({
+            "tipo": "sem_profissional_elegivel",
+            "titulo": "Sem profissional elegível",
+            "gravidade": "critica",
+            "mensagem": f"{ordem['id']} {exigencia}. Nenhum profissional disponível está habilitado.",
+            "profissional_id": None,
+            "ordem_id": ordem["id"],
+        })
+
+    return alertas_de_bloqueio + alertas_sem_elegivel + alertas_de_conflito + alertas_de_vencimento
 
 EQUIPAMENTOS = [
     ("Vaso de pressão", r"vaso de press[ãa]o"),
@@ -213,3 +310,62 @@ def criar_ordem(descricao, local, prazo):
     }
     estado["ordens"].append(ordem)
     return ordem
+
+def condicao_atendida(condicao, interpretacao):
+    campos = interpretacao["campos_extraidos"]
+    nome_do_campo = condicao["campo"]
+
+    if nome_do_campo in campos:
+        valor = campos[nome_do_campo]["valor"]
+    else:
+        valor = interpretacao.get(nome_do_campo)
+
+    if "valor" in condicao:
+        esperado = condicao["valor"]
+        if isinstance(esperado, bool):
+            return valor is esperado
+        return valor is not None and normalizar(valor) == normalizar(esperado)
+
+    if "contem" in condicao:
+        return valor is not None and normalizar(condicao["contem"]) in normalizar(valor)
+
+    return False
+
+
+def todas_atendidas(condicoes, interpretacao):
+    return all(condicao_atendida(condicao, interpretacao) for condicao in condicoes)
+
+
+def montar_requisitos(interpretacao):
+    if not interpretacao:
+        return []
+
+    matriz = carregar_dados("matriz_habilitacoes.json")
+    requisitos = []
+    for regra in matriz["regras"]:
+        if todas_atendidas(regra["se"], interpretacao):
+            requisito = dict(regra["exige"])
+            requisito["regra_id"] = regra["id"]
+            requisito["descricao"] = f"{requisito['aplica_a_texto']} · {requisito['motivo']}"
+            requisitos.append(requisito)
+    return requisitos
+
+
+def montar_composicao(interpretacao):
+    if not interpretacao:
+        return []
+
+    matriz = carregar_dados("matriz_habilitacoes.json")
+    for composicao in matriz["composicoes"]:
+        if todas_atendidas(composicao["se"], interpretacao):
+            return composicao["funcoes"]
+    return []
+
+
+def montar_resposta_da_ordem(ordem):
+    resposta = dict(ordem)
+    interpretacao = ordem.get("interpretacao")
+    composicao = montar_composicao(interpretacao)
+    resposta["requisitos"] = montar_requisitos(interpretacao)
+    resposta["equipe_estimada"] = sum(item["qtd"] for item in composicao)
+    return resposta

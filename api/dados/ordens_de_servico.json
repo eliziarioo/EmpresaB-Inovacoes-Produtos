@@ -6,7 +6,54 @@
     "local": "Plataforma P-XX",
     "ambiente": "offshore",
     "prazo": "2026-10-18",
-    "estado": "aguardando_aprovacao"
+    "estado": "aguardando_aprovacao",
+    "descricao_texto": "Vazamento identificado no vaso de pressão V-301, módulo 3 da plataforma P-XX. Necessário reparo com solda no bocal de saída e inspeção após o reparo. Acesso pelo andaime a 6 metros. Prazo de 48 horas a partir do embarque.",
+    "janela": {
+      "inicio": "2026-10-17",
+      "fim": "2026-10-19"
+    },
+    "interpretacao": {
+      "campos_extraidos": {
+        "ambiente": {
+          "valor": "Offshore",
+          "trecho_origem": "plataforma P-XX"
+        },
+        "equipamento": {
+          "valor": "Vaso de pressão V-301",
+          "trecho_origem": "vaso de pressão V-301"
+        },
+        "atividades": {
+          "valor": "Reparo com solda · inspeção",
+          "trecho_origem": "reparo com solda... e inspeção"
+        },
+        "condicao_de_acesso": {
+          "valor": "Trabalho em altura",
+          "trecho_origem": "Acesso pelo andaime a 6 metros"
+        },
+        "prazo": {
+          "valor": "48 horas após o embarque",
+          "limite": "2026-10-18",
+          "trecho_origem": "Prazo de 48 horas a partir do embarque"
+        }
+      },
+      "espaco_confinado": null,
+      "duvidas_da_ia": [
+        {
+          "pergunta": "O reparo envolve entrada no interior do vaso (espaço confinado)?",
+          "explicacao": "A descrição não deixa claro. A resposta muda as exigências da equipe.",
+          "opcoes": [
+            "Não, serviço externo",
+            "Sim, há entrada no vaso"
+          ],
+          "campo": "espaco_confinado",
+          "valores": [
+            false,
+            true
+          ],
+          "resposta": null
+        }
+      ]
+    }
   },
   {
     "id": "OS-2490",
@@ -15,7 +62,39 @@
     "local": "Base Macaé",
     "ambiente": "onshore",
     "prazo": "2026-10-20",
-    "estado": "sem_profissional_elegivel"
+    "estado": "sem_profissional_elegivel",
+    "descricao_texto": "Limpeza interna do tanque de armazenamento da base Macaé, com entrada de pessoas no interior do tanque.",
+    "janela": {
+      "inicio": "2026-10-20",
+      "fim": "2026-10-21"
+    },
+    "interpretacao": {
+      "campos_extraidos": {
+        "ambiente": {
+          "valor": "Onshore",
+          "trecho_origem": "base Macaé"
+        },
+        "equipamento": {
+          "valor": "Tanque de armazenamento",
+          "trecho_origem": "tanque de armazenamento"
+        },
+        "atividades": {
+          "valor": "Limpeza interna",
+          "trecho_origem": "Limpeza interna"
+        },
+        "condicao_de_acesso": {
+          "valor": "Espaço confinado",
+          "trecho_origem": "entrada de pessoas no interior do tanque"
+        },
+        "prazo": {
+          "valor": "Até 20/10",
+          "limite": "2026-10-20",
+          "trecho_origem": null
+        }
+      },
+      "espaco_confinado": true,
+      "duvidas_da_ia": []
+    }
   },
   {
     "id": "OS-2479",

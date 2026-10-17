@@ -33,7 +33,7 @@ def detalhar_ordem(request, id_ordem):
 
     for ordem in ordens:
         if ordem["id"] == id_ordem:
-            return Response(ordem)
+            return Response(regras.montar_resposta_da_ordem(ordem))
 
     raise NotFound(f"Ordem {id_ordem} não encontrada")
 
@@ -84,6 +84,7 @@ def painel(request):
             "os_abertas": ordens_abertas,
             "aguardando_aprovacao": ordens_aguardando_aprovacao,
             "em_execucao": ordens_em_execucao,
+            "profissionais_disponiveis": regras.contar_disponiveis_por_funcao(),
         },
     })
 
@@ -110,4 +111,4 @@ def receber_nova_ordem(request):
         raise ValidationError("Prazo inválido. Use AAAA-MM-DD ou DD/MM/AAAA.")
 
     ordem = regras.criar_ordem(descricao, local, prazo)
-    return Response(ordem, status=status.HTTP_201_CREATED)
+    return Response(regras.montar_resposta_da_ordem(ordem), status=status.HTTP_201_CREATED)

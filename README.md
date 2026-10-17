@@ -50,15 +50,22 @@ O protótipo mostra um serviço em cinco telas:
 
 ### Equipe
 
-Setor: Produtos e Inovações
+#### Equipe de código
 
 - Bernardo Eliziario
-- Giovanna Coelho
 - Giovanna Perrone
 - João Pedro Ferreira
-- João Victor Braga
 - Pedro Albuquerque
-- Yanne Joia
+
+#### Equipe de forma geral
+
+- Bernardo Eliziario
+- Giovanna Coelho (Equipe de Design)
+- Giovanna Perrone
+- João Pedro Ferreira
+- João Victor Braga (Equipe de Design)
+- Pedro Albuquerque
+- Yanne Joia (Equipe de Design)
 
 ## O que cada área entrega
 
@@ -78,7 +85,7 @@ Objetivo da área: definir a solução proposta e mostrar como o produto atende 
 
 - [x] Identificação do problema e da oportunidade de negócio
 - [x] Definição da proposta de valor e do público inicialmente considerado
-- [ ] Descrição do escopo, das funcionalidades e da lógica de funcionamento do produto
+- [x] Descrição do escopo, das funcionalidades e da lógica de funcionamento do produto
 - [ ] Protótipo demonstrativo, utilizando recursos compatíveis com o nível de desenvolvimento esperado
 - [ ] Justificativa das principais decisões e dos diferenciais da solução
 
@@ -88,3 +95,26 @@ Objetivo da área: definir a solução proposta e mostrar como o produto atende 
 - [x] Definição da proposta-base
 - [ ] Desenvolvimento e validação
 - [ ] Consolidação final
+
+### Como rodar o projeto
+
+Siga os passos abaixo para executar o protótipo localmente em sua máquina:
+
+1. Pelo terminal, acesse a pasta da API:
+   ```bash
+   cd api
+   ```
+
+2. Instale as dependências necessárias do Python:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Inicie o servidor do Django:
+   ```bash
+   python manage.py runserver
+   ```
+
+4. Abra o seu navegador de preferência e acesse o endereço:
+   http://127.0.0.1:8000/painel
+   

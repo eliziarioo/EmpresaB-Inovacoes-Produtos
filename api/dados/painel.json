@@ -1,0 +1,13 @@
+{
+  "data_referencia": "2026-10-16",
+  "usuario": {
+    "nome": "Marina Costa",
+    "cargo": "Gestora de operações",
+    "iniciais": "MC"
+  },
+  "outras_ordens": {
+    "abertas": 8,
+    "aguardando_aprovacao": 2,
+    "em_execucao": 4
+  }
+}

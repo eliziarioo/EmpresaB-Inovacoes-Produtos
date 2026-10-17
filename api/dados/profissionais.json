@@ -1,0 +1,317 @@
+[
+  {
+    "id": "pro-001",
+    "nome": "Carlos Mendes",
+    "funcao": "engenharia de inspeção",
+    "cargo": "Engenheiro de inspeção",
+    "base": "Macaé",
+    "custo_diaria": 2800,
+    "certificacoes": [
+      {"codigo": "NR-13", "validade": "2028-12-31"},
+      {"codigo": "CREA", "validade": "2027-12-31"},
+      {"codigo": "CBSP", "validade": "2029-03-31"},
+      {"codigo": "HUET", "validade": "2028-08-31"},
+      {"codigo": "NR-35", "validade": "2027-05-31"}
+    ]
+  },
+  {
+    "id": "pro-002",
+    "nome": "Ana Ribeiro",
+    "funcao": "soldador",
+    "cargo": "Soldadora qualificada",
+    "base": "Macaé",
+    "custo_diaria": 2400,
+    "certificacoes": [
+      {"codigo": "SOLDADOR_QUALIFICADO", "validade": "2026-12-31"},
+      {"codigo": "CBSP", "validade": "2028-06-30"},
+      {"codigo": "HUET", "validade": "2028-06-30"},
+      {"codigo": "NR-35", "validade": "2027-09-30"}
+    ]
+  },
+  {
+    "id": "pro-003",
+    "nome": "Paulo Souza",
+    "funcao": "caldeireiro",
+    "cargo": "Caldeireiro",
+    "base": "Macaé",
+    "custo_diaria": 2000,
+    "certificacoes": [
+      {"codigo": "CBSP", "validade": "2027-11-30"},
+      {"codigo": "HUET", "validade": "2027-11-30"},
+      {"codigo": "NR-35", "validade": "2027-02-28"}
+    ]
+  },
+  {
+    "id": "pro-004",
+    "nome": "Jorge Lima",
+    "funcao": "soldador",
+    "cargo": "Soldador",
+    "base": "Macaé",
+    "custo_diaria": 2400,
+    "certificacoes": [
+      {"codigo": "SOLDADOR_QUALIFICADO", "validade": "2027-04-30"},
+      {"codigo": "CBSP", "validade": "2028-02-29"},
+      {"codigo": "HUET", "validade": "2026-10-02"},
+      {"codigo": "NR-35", "validade": "2027-07-31"}
+    ]
+  },
+  {
+    "id": "pro-005",
+    "nome": "Rita Fonseca",
+    "funcao": "engenharia de inspeção",
+    "cargo": "Inspetora",
+    "base": "Macaé",
+    "custo_diaria": 2800,
+    "certificacoes": [
+      {"codigo": "NR-13", "validade": "2028-06-30"},
+      {"codigo": "CREA", "validade": "2027-12-31"},
+      {"codigo": "CBSP", "validade": "2028-09-30"},
+      {"codigo": "HUET", "validade": "2028-09-30"}
+    ]
+  },
+  {
+    "id": "pro-006",
+    "nome": "Marcos Teixeira",
+    "funcao": "caldeireiro",
+    "cargo": "Caldeireiro",
+    "base": "Macaé",
+    "custo_diaria": 2000,
+    "certificacoes": [
+      {"codigo": "CBSP", "validade": "2026-11-30"},
+      {"codigo": "HUET", "validade": "2027-10-31"},
+      {"codigo": "NR-35", "validade": "2027-06-30"}
+    ]
+  },
+  {
+    "id": "pro-007",
+    "nome": "Rafael Duarte",
+    "funcao": "soldador",
+    "cargo": "Soldador",
+    "base": "Vitória",
+    "custo_diaria": 2400,
+    "certificacoes": [
+      {"codigo": "SOLDADOR_QUALIFICADO", "validade": "2027-03-31"},
+      {"codigo": "CBSP", "validade": "2028-04-30"},
+      {"codigo": "HUET", "validade": "2028-04-30"},
+      {"codigo": "NR-35", "validade": "2027-06-30"}
+    ]
+  },
+  {
+    "id": "pro-008",
+    "nome": "Mariana Rocha",
+    "funcao": "engenharia de inspeção",
+    "cargo": "Engenheira de inspeção",
+    "base": "Macaé",
+    "custo_diaria": 4300,
+    "certificacoes": [
+      {"codigo": "NR-13", "validade": "2029-01-31"},
+      {"codigo": "CREA", "validade": "2028-03-31"},
+      {"codigo": "CBSP", "validade": "2029-05-31"},
+      {"codigo": "HUET", "validade": "2029-05-31"},
+      {"codigo": "NR-35", "validade": "2028-02-29"}
+    ]
+  },
+  {
+    "id": "pro-009",
+    "nome": "Lucas Prado",
+    "funcao": "soldador",
+    "cargo": "Soldador",
+    "base": "Macaé",
+    "custo_diaria": 2200,
+    "certificacoes": [
+      {"codigo": "SOLDADOR_QUALIFICADO", "validade": "2027-05-31"},
+      {"codigo": "NR-35", "validade": "2027-08-31"}
+    ]
+  },
+  {
+    "id": "pro-010",
+    "nome": "Renato Gomes",
+    "funcao": "soldador",
+    "cargo": "Soldador",
+    "base": "Macaé",
+    "custo_diaria": 2200,
+    "certificacoes": [
+      {"codigo": "SOLDADOR_QUALIFICADO", "validade": "2027-02-28"},
+      {"codigo": "NR-35", "validade": "2027-03-31"}
+    ]
+  },
+  {
+    "id": "pro-011",
+    "nome": "Tiago Mello",
+    "funcao": "soldador",
+    "cargo": "Soldador",
+    "base": "Rio de Janeiro",
+    "custo_diaria": 2200,
+    "certificacoes": [
+      {"codigo": "SOLDADOR_QUALIFICADO", "validade": "2027-06-30"},
+      {"codigo": "NR-35", "validade": "2027-04-30"}
+    ]
+  },
+  {
+    "id": "pro-012",
+    "nome": "Eduardo Nunes",
+    "funcao": "caldeireiro",
+    "cargo": "Caldeireiro",
+    "base": "Macaé",
+    "custo_diaria": 1900,
+    "certificacoes": [
+      {"codigo": "NR-35", "validade": "2027-05-31"}
+    ]
+  },
+  {
+    "id": "pro-013",
+    "nome": "Felipe Araújo",
+    "funcao": "caldeireiro",
+    "cargo": "Caldeireiro",
+    "base": "Macaé",
+    "custo_diaria": 1900,
+    "certificacoes": [
+      {"codigo": "NR-35", "validade": "2027-09-30"}
+    ]
+  },
+  {
+    "id": "pro-014",
+    "nome": "Gustavo Pires",
+    "funcao": "caldeireiro",
+    "cargo": "Caldeireiro",
+    "base": "Rio de Janeiro",
+    "custo_diaria": 1900,
+    "certificacoes": [
+      {"codigo": "NR-35", "validade": "2027-01-31"}
+    ]
+  },
+  {
+    "id": "pro-015",
+    "nome": "Henrique Dias",
+    "funcao": "caldeireiro",
+    "cargo": "Caldeireiro",
+    "base": "Macaé",
+    "custo_diaria": 1900,
+    "certificacoes": [
+      {"codigo": "NR-35", "validade": "2027-07-31"}
+    ]
+  },
+  {
+    "id": "pro-016",
+    "nome": "Vinícius Castro",
+    "funcao": "caldeireiro",
+    "cargo": "Caldeireiro",
+    "base": "Macaé",
+    "custo_diaria": 1900,
+    "certificacoes": [
+      {"codigo": "NR-35", "validade": "2027-10-31"}
+    ]
+  },
+  {
+    "id": "pro-017",
+    "nome": "Bruno Cardoso",
+    "funcao": "eletricista",
+    "cargo": "Eletricista",
+    "base": "Macaé",
+    "custo_diaria": 2100,
+    "certificacoes": [
+      {"codigo": "NR-10", "validade": "2027-03-31"}
+    ]
+  },
+  {
+    "id": "pro-018",
+    "nome": "Daniel Moura",
+    "funcao": "eletricista",
+    "cargo": "Eletricista",
+    "base": "Rio de Janeiro",
+    "custo_diaria": 2100,
+    "certificacoes": [
+      {"codigo": "NR-10", "validade": "2027-08-31"}
+    ]
+  },
+  {
+    "id": "pro-019",
+    "nome": "Leandro Ramos",
+    "funcao": "eletricista",
+    "cargo": "Eletricista",
+    "base": "Macaé",
+    "custo_diaria": 2100,
+    "certificacoes": [
+      {"codigo": "NR-10", "validade": "2027-05-31"}
+    ]
+  },
+  {
+    "id": "pro-020",
+    "nome": "Otávio Lima",
+    "funcao": "eletricista",
+    "cargo": "Eletricista",
+    "base": "Macaé",
+    "custo_diaria": 2300,
+    "certificacoes": [
+      {"codigo": "NR-10", "validade": "2027-06-30"},
+      {"codigo": "CBSP", "validade": "2028-01-31"},
+      {"codigo": "HUET", "validade": "2028-01-31"}
+    ]
+  },
+  {
+    "id": "pro-021",
+    "nome": "Sérgio Batista",
+    "funcao": "eletricista",
+    "cargo": "Eletricista",
+    "base": "Macaé",
+    "custo_diaria": 2100,
+    "certificacoes": [
+      {"codigo": "NR-10", "validade": "2027-09-30"}
+    ]
+  },
+  {
+    "id": "pro-022",
+    "nome": "Alan Freitas",
+    "funcao": "pintor industrial",
+    "cargo": "Pintor industrial",
+    "base": "Macaé",
+    "custo_diaria": 1700,
+    "certificacoes": [
+      {"codigo": "NR-35", "validade": "2027-04-30"}
+    ]
+  },
+  {
+    "id": "pro-023",
+    "nome": "Caio Barros",
+    "funcao": "pintor industrial",
+    "cargo": "Pintor industrial",
+    "base": "Macaé",
+    "custo_diaria": 1700,
+    "certificacoes": [
+      {"codigo": "NR-35", "validade": "2027-06-30"}
+    ]
+  },
+  {
+    "id": "pro-024",
+    "nome": "Ícaro Teles",
+    "funcao": "pintor industrial",
+    "cargo": "Pintor industrial",
+    "base": "Rio de Janeiro",
+    "custo_diaria": 1700,
+    "certificacoes": [
+      {"codigo": "NR-35", "validade": "2027-02-28"}
+    ]
+  },
+  {
+    "id": "pro-025",
+    "nome": "Murilo Sá",
+    "funcao": "pintor industrial",
+    "cargo": "Pintor industrial",
+    "base": "Macaé",
+    "custo_diaria": 1700,
+    "certificacoes": [
+      {"codigo": "NR-35", "validade": "2027-08-31"}
+    ]
+  },
+  {
+    "id": "pro-026",
+    "nome": "Pedro Lacerda",
+    "funcao": "pintor industrial",
+    "cargo": "Pintor industrial",
+    "base": "Macaé",
+    "custo_diaria": 1700,
+    "certificacoes": [
+      {"codigo": "NR-35", "validade": "2027-03-31"}
+    ]
+  }
+]

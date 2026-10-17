@@ -75,7 +75,7 @@
       ],
       "funcoes": [
         {"funcao": "engenharia de inspeção", "qtd": 1, "papel": "responsável pela inspeção NR-13"},
-        {"funcao": "soldador", "qtd": 1, "papel": "soldagem do bocal"},
+        {"funcao": "soldador", "qtd": 1, "papel": "soldagem do bocal", "historico_como_detalhe": true},
         {"funcao": "caldeireiro", "qtd": 1, "papel": "abertura e fechamento do bocal"}
       ]
     },

@@ -15,6 +15,9 @@ def reiniciar_estado():
     global _estado
     _estado = {
         "ordens": carregar_dados("ordens_de_servico.json"),
+        "profissionais": carregar_dados("profissionais.json"),
+        "equipes_ajustadas": {},
+        "notificacoes": [],
     }
 
 

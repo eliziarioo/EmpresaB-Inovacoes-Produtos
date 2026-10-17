@@ -1,5 +1,7 @@
+from django.conf import settings
+from django.http import FileResponse
 from rest_framework.decorators import api_view
-from rest_framework.exceptions import NotFound
+from rest_framework.exceptions import APIException, NotFound, ValidationError
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.exceptions import NotFound, ValidationError
@@ -7,6 +9,15 @@ from . import regras
 
 from .dados import carregar_dados, obter_estado, reiniciar_estado
 
+class Conflito(APIException):
+    status_code = status.HTTP_409_CONFLICT
+    default_detail = "Operação não permitida no estado atual."
+
+def ordem_ou_404(id_ordem):
+    ordem = regras.achar_ordem(id_ordem)
+    if ordem is None:
+        raise NotFound(f"Ordem {id_ordem} não encontrada")
+    return ordem
 
 @api_view(["GET", "POST"])
 def listar_ordens(request):
@@ -112,3 +123,98 @@ def receber_nova_ordem(request):
 
     ordem = regras.criar_ordem(descricao, local, prazo)
     return Response(regras.montar_resposta_da_ordem(ordem), status=status.HTTP_201_CREATED)
+
+@api_view(["GET"])
+def equipes_da_ordem(request, id_ordem):
+    ordem = ordem_ou_404(id_ordem)
+    if not ordem.get("interpretacao"):
+        raise ValidationError("Esta ordem ainda não tem leitura da descrição.")
+    return Response(regras.buscar_equipes(ordem))
+
+@api_view(["POST"])
+def buscar_equipes_da_ordem(request, id_ordem):
+    ordem = ordem_ou_404(id_ordem)
+    if not ordem.get("interpretacao"):
+        raise ValidationError("Esta ordem ainda não tem leitura da descrição.")
+
+    if ordem["estado"] == "rascunho":
+        return Response(regras.atualizar_estado_apos_busca(ordem))
+    return Response(regras.buscar_equipes(ordem))
+
+
+@api_view(["PATCH"])
+def corrigir_leitura_da_ordem(request, id_ordem):
+    ordem = ordem_ou_404(id_ordem)
+    try:
+        regras.corrigir_interpretacao(ordem, request.data)
+    except (ValueError, IndexError, KeyError) as erro:
+        raise ValidationError(str(erro))
+    return Response(regras.montar_resposta_da_ordem(ordem))
+
+@api_view(["PATCH"])
+def ajustar_equipe_da_ordem(request, id_ordem):
+    ordem = ordem_ou_404(id_ordem)
+    ids = request.data.get("profissionais")
+    if not isinstance(ids, list) or not ids:
+        raise ValidationError("Envie 'profissionais' com a lista de ids.")
+
+    try:
+        visao = regras.ajustar_equipe(ordem, ids)
+    except LookupError as erro:
+        raise NotFound(str(erro))
+    return Response(visao)
+
+
+@api_view(["POST"])
+def aprovar_equipe_da_ordem(request, id_ordem):
+    ordem = ordem_ou_404(id_ordem)
+    if ordem["estado"] == "equipe_aprovada":
+        raise Conflito("A equipe desta ordem já foi aprovada.")
+
+    try:
+        notificados, replanejadas = regras.aprovar_equipe(ordem)
+    except PermissionError as erro:
+        raise Conflito(str(erro))
+
+    return Response({
+        "ordem": regras.montar_resposta_da_ordem(ordem),
+        "notificados": notificados,
+        "ordens_replanejadas": replanejadas,
+    })
+
+@api_view(["GET"])
+def dossie_da_ordem(request, id_ordem):
+    ordem = ordem_ou_404(id_ordem)
+    try:
+        return Response(regras.montar_dossie(ordem))
+    except LookupError as erro:
+        raise Conflito(str(erro))
+
+
+def documento_para_resposta(documento):
+    resposta = dict(documento)
+    resposta["arquivo_url"] = f"/documentos/{documento['id']}/arquivo"
+    return resposta
+
+
+@api_view(["GET"])
+def listar_documentos(request):
+    return Response([documento_para_resposta(d) for d in carregar_dados("documentos.json")])
+
+
+@api_view(["GET"])
+def documentos_da_ordem(request, id_ordem):
+    ordem = ordem_ou_404(id_ordem)
+    documentos = [regras.achar_documento(i) for i in ordem.get("documentos_autorizados", [])]
+    return Response([documento_para_resposta(d) for d in documentos if d])
+
+
+@api_view(["GET"])
+def arquivo_do_documento(request, id_documento):
+    documento = regras.achar_documento(id_documento)
+    if documento is None:
+        raise NotFound(f"Documento {id_documento} não encontrado")
+    caminho = settings.BASE_DIR / "arquivos" / documento["arquivo"]
+    if not caminho.exists():
+        raise NotFound(f"Arquivo {documento['arquivo']} não encontrado na pasta api/arquivos")
+    return FileResponse(open(caminho, "rb"), content_type="application/pdf")

@@ -4,14 +4,29 @@
     "servico": "Reparo com solda em vaso de pressão V-301",
     "resumo_equipe": "Equipe sugerida · 3 profissionais",
     "local": "Plataforma P-XX",
+    "local_detalhe": "Plataforma P-XX · módulo 3",
     "ambiente": "offshore",
     "prazo": "2026-10-18",
     "estado": "aguardando_aprovacao",
+    "no_painel": true,
     "descricao_texto": "Vazamento identificado no vaso de pressão V-301, módulo 3 da plataforma P-XX. Necessário reparo com solda no bocal de saída e inspeção após o reparo. Acesso pelo andaime a 6 metros. Prazo de 48 horas a partir do embarque.",
     "janela": {
       "inicio": "2026-10-17",
       "fim": "2026-10-19"
     },
+    "embarque": {
+      "data": "2026-10-17",
+      "hora": "06:30",
+      "ponto": "Heliponto de Macaé"
+    },
+    "avisos_equipe": [
+      "o serviço só começa com a permissão de trabalho emitida a bordo."
+    ],
+    "documentos_autorizados": [
+      "doc-001",
+      "doc-002",
+      "doc-003"
+    ],
     "interpretacao": {
       "campos_extraidos": {
         "ambiente": {
@@ -60,14 +75,19 @@
     "servico": "Limpeza interna de tanque de armazenamento",
     "resumo_equipe": "Exige NR-33 · espaço confinado",
     "local": "Base Macaé",
+    "local_detalhe": "Base Macaé",
     "ambiente": "onshore",
     "prazo": "2026-10-20",
     "estado": "sem_profissional_elegivel",
+    "no_painel": true,
     "descricao_texto": "Limpeza interna do tanque de armazenamento da base Macaé, com entrada de pessoas no interior do tanque.",
     "janela": {
       "inicio": "2026-10-20",
       "fim": "2026-10-21"
     },
+    "embarque": null,
+    "avisos_equipe": [],
+    "documentos_autorizados": [],
     "interpretacao": {
       "campos_extraidos": {
         "ambiente": {
@@ -101,26 +121,63 @@
     "servico": "Inspeção de válvulas de segurança",
     "resumo_equipe": "Equipe de 2 profissionais",
     "local": "Plataforma P-YY",
+    "local_detalhe": "Plataforma P-YY · módulo 2",
     "ambiente": "offshore",
     "prazo": "2026-10-22",
-    "estado": "equipe_aprovada"
+    "estado": "equipe_aprovada",
+    "no_painel": true,
+    "descricao_texto": "Inspeção das válvulas de segurança do módulo 2 da plataforma P-YY.",
+    "janela": {
+      "inicio": "2026-10-21",
+      "fim": "2026-10-22"
+    },
+    "embarque": {
+      "data": "2026-10-21",
+      "hora": "07:00",
+      "ponto": "Heliponto de Macaé"
+    },
+    "avisos_equipe": [],
+    "documentos_autorizados": [],
+    "interpretacao": null
   },
   {
     "id": "OS-2476",
     "servico": "Pintura anticorrosiva de tubulação",
     "resumo_equipe": "Equipe de 4 profissionais",
     "local": "Base Macaé",
+    "local_detalhe": "Base Macaé",
     "ambiente": "onshore",
     "prazo": "2026-10-25",
-    "estado": "em_execucao"
+    "estado": "em_execucao",
+    "no_painel": true,
+    "descricao_texto": "Pintura anticorrosiva da tubulação de utilidades da base Macaé.",
+    "janela": {
+      "inicio": "2026-10-14",
+      "fim": "2026-10-20"
+    },
+    "embarque": null,
+    "avisos_equipe": [],
+    "documentos_autorizados": [],
+    "interpretacao": null
   },
   {
     "id": "OS-2472",
     "servico": "Manutenção elétrica em painel de distribuição",
     "resumo_equipe": "Registro de execução enviado",
     "local": "Plataforma P-XX",
+    "local_detalhe": "Plataforma P-XX · módulo 1",
     "ambiente": "offshore",
     "prazo": "2026-10-15",
-    "estado": "concluida"
+    "estado": "concluida",
+    "no_painel": true,
+    "descricao_texto": "Manutenção elétrica no painel de distribuição do módulo 1 da plataforma P-XX.",
+    "janela": {
+      "inicio": "2026-10-12",
+      "fim": "2026-10-15"
+    },
+    "embarque": null,
+    "avisos_equipe": [],
+    "documentos_autorizados": [],
+    "interpretacao": null
   }
 ]

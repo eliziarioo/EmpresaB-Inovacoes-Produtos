@@ -977,12 +977,17 @@ def aprovar_equipe(ordem):
     ordem["equipe_aprovada"] = list(ids)
     estado["equipes_ajustadas"].pop(ordem["id"], None)
 
+    mensagem = f"Você foi escalado na {ordem['id']}: {ordem['servico']}."
+    embarque = ordem.get("embarque")
+    if embarque:
+        mensagem += f" Embarque em {dia_mes(date.fromisoformat(embarque['data']))} às {embarque['hora']}."
+
     notificados = []
     for profissional in equipe:
         estado["notificacoes"].append({
             "profissional_id": profissional["id"],
             "ordem_id": ordem["id"],
-            "mensagem": f"Você foi escalado na {ordem['id']}: {ordem['servico']}.",
+            "mensagem": mensagem,
         })
         notificados.append({"id": profissional["id"], "nome": profissional["nome"]})
 
@@ -1047,4 +1052,110 @@ def montar_dossie(ordem):
             {"id": d["id"], "codigo": d["codigo"], "titulo": d["titulo_completo"], "versao": d["versao"]}
             for d in documentos if d
         ],
+    }
+
+DIAS_DA_SEMANA = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"]
+MESES = [
+    "janeiro", "fevereiro", "março", "abril", "maio", "junho",
+    "julho", "agosto", "setembro", "outubro", "novembro", "dezembro",
+]
+
+
+def dia_mes(data):
+    return f"{data.day:02d}/{data.month:02d}"
+
+
+def quando_em_texto(data, hoje):
+    if data == hoje:
+        return f"hoje, {dia_mes(data)}"
+    if data == hoje + timedelta(days=1):
+        return f"amanhã, {dia_mes(data)}"
+    return dia_mes(data)
+
+
+def montar_aviso_de_embarque(ordem, hoje):
+    embarque = ordem.get("embarque")
+    if not embarque:
+        return None
+
+    quando = quando_em_texto(date.fromisoformat(embarque["data"]), hoje)
+    if ordem["estado"] in ("equipe_aprovada", "em_execucao"):
+        return {"tipo": "confirmado", "mensagem": f"Embarque confirmado · {quando}, às {embarque['hora']}"}
+    return {
+        "tipo": "previsto",
+        "mensagem": f"Embarque previsto · {quando}, às {embarque['hora']} (aguardando aprovação da equipe)",
+    }
+
+
+def montar_servico_do_profissional(profissional, ordem, hoje):
+    composicao = montar_composicao(ordem.get("interpretacao"))
+    item = next((i for i in composicao if i["funcao"] == profissional["funcao"]), None)
+
+    nomes_dos_colegas = []
+    for id_membro in ids_da_equipe_atual(ordem):
+        if id_membro != profissional["id"]:
+            nomes_dos_colegas.append(achar_profissional(id_membro)["nome"])
+    equipe_texto = lista_com_e(nomes_dos_colegas + ["você"]) if nomes_dos_colegas else None
+
+    avisos = []
+    aviso_de_embarque = montar_aviso_de_embarque(ordem, hoje)
+    if aviso_de_embarque:
+        avisos.append(aviso_de_embarque)
+    for aviso in ordem.get("avisos_equipe", []):
+        avisos.append({"tipo": "atencao", "mensagem": f"Atenção · {aviso}"})
+
+    prazo_texto = dia_mes(date.fromisoformat(ordem["prazo"]))
+    if ordem.get("interpretacao"):
+        prazo_texto += " · " + ordem["interpretacao"]["campos_extraidos"]["prazo"]["valor"]
+
+    documentos = [achar_documento(id_documento) for id_documento in ordem.get("documentos_autorizados", [])]
+    return {
+        "ordem_id": ordem["id"],
+        "titulo": ordem["servico"],
+        "estado": ordem["estado"],
+        "estado_rotulo": ROTULOS_ESTADO[ordem["estado"]],
+        "local_detalhe": ordem.get("local_detalhe", ordem["local"]),
+        "prazo": ordem["prazo"],
+        "prazo_texto": prazo_texto,
+        "equipe_texto": equipe_texto,
+        "sua_funcao": item["papel_detalhado"] if item else None,
+        "avisos": avisos,
+        "embarque": ordem.get("embarque"),
+        "documentos": [
+            {"id": d["id"], "titulo": d["titulo"], "descricao_curta": d["descricao_curta"], "tipo": d["tipo"]}
+            for d in documentos if d
+        ],
+    }
+
+
+def montar_servicos_do_profissional(profissional, incluir_indicados=False):
+    hoje = data_de_referencia()
+    status_aceitos = ("confirmada", "indicada") if incluir_indicados else ("confirmada",)
+
+    alocacoes = sorted(profissional["alocacoes"], key=lambda alocacao: alocacao["inicio"])
+    servicos = []
+    for alocacao in alocacoes:
+        if alocacao["status"] not in status_aceitos:
+            continue
+        ordem = achar_ordem(alocacao["ordem_id"])
+        if ordem is None or ordem["estado"] == "concluida":
+            continue
+        servicos.append(montar_servico_do_profissional(profissional, ordem, hoje))
+
+    notificacoes = [
+        notificacao for notificacao in obter_estado()["notificacoes"]
+        if notificacao["profissional_id"] == profissional["id"]
+    ]
+    return {
+        "profissional": {
+            "id": profissional["id"],
+            "nome": profissional["nome"],
+            "primeiro_nome": profissional["nome"].split()[0],
+            "iniciais": iniciais_do_nome(profissional["nome"]),
+        },
+        "data_texto": f"{DIAS_DA_SEMANA[hoje.weekday()]}, {hoje.day} de {MESES[hoje.month - 1]}",
+        "avisos": servicos[0]["avisos"] if servicos else [],
+        "proximo_servico": servicos[0] if servicos else None,
+        "servicos": servicos,
+        "notificacoes": notificacoes,
     }

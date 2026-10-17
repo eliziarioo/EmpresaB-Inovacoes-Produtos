@@ -1,0 +1,24 @@
+[
+  {
+    "id": "gestor",
+    "tipo": "gestor",
+    "usuario": "marina",
+    "senha": "gestor123",
+    "nome": "Marina Costa",
+    "cargo": "Gestora de operações",
+    "iniciais": "MC",
+    "profissional_id": null,
+    "tela_inicial": "/painel"
+  },
+  {
+    "id": "tecnico",
+    "tipo": "tecnico",
+    "usuario": "paulo",
+    "senha": "tecnico123",
+    "nome": "Paulo Souza",
+    "cargo": "Caldeireiro",
+    "iniciais": "PS",
+    "profissional_id": "pro-003",
+    "tela_inicial": "/profissionais/pro-003/servicos"
+  }
+]

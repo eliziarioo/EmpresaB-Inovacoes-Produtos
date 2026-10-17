@@ -5,7 +5,7 @@ from rest_framework.exceptions import APIException, NotFound, ValidationError
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.exceptions import NotFound, ValidationError
-from . import regras
+from . import permissoes, regras
 
 from .dados import carregar_dados, obter_estado, reiniciar_estado
 
@@ -218,3 +218,61 @@ def arquivo_do_documento(request, id_documento):
     if not caminho.exists():
         raise NotFound(f"Arquivo {documento['arquivo']} não encontrado na pasta api/arquivos")
     return FileResponse(open(caminho, "rb"), content_type="application/pdf")
+
+@api_view(["GET"])
+def servicos_do_profissional(request, id_profissional):
+    profissional = regras.achar_profissional(id_profissional)
+    if profissional is None:
+        raise NotFound(f"Profissional {id_profissional} não encontrado")
+
+    incluir_indicados = request.query_params.get("incluir_indicados") == "true"
+    return Response(regras.montar_servicos_do_profissional(profissional, incluir_indicados))
+
+@api_view(["GET"])
+def listar_perfis(request):
+    return Response(carregar_dados("perfis.json"))
+
+
+@api_view(["POST"])
+def entrar(request):
+    id_perfil = request.data.get("perfil")
+    perfis = carregar_dados("perfis.json")
+    perfil = next((p for p in perfis if p["id"] == id_perfil), None)
+    if perfil is None:
+        validos = ", ".join(p["id"] for p in perfis)
+        raise ValidationError({"perfil": f"Perfil não encontrado. Use um destes: {validos}."})
+
+    return Response({"perfil": perfil, "mensagem": f"Você entrou como {perfil['nome']}."})
+
+@api_view(["GET"])
+def listar_perfis(request):
+    return Response([permissoes.perfil_publico(p) for p in carregar_dados("perfis.json")])
+
+
+@api_view(["POST"])
+def entrar(request):
+    perfil = permissoes.autenticar(request.data.get("usuario"), request.data.get("senha"))
+    if perfil is None:
+        return Response({"detail": "Usuário ou senha incorretos."}, status=status.HTTP_401_UNAUTHORIZED)
+
+    token = permissoes.abrir_sessao(perfil)
+    return Response({
+        "token": token,
+        "perfil": permissoes.perfil_publico(perfil),
+        "mensagem": f"Você entrou como {perfil['nome']}.",
+    })
+
+
+@api_view(["POST"])
+def sair(request):
+    token = permissoes.extrair_token(request)
+    permissoes.SESSOES.pop(token, None)
+    return Response({"mensagem": "Você saiu."})
+
+
+@api_view(["GET"])
+def quem_sou_eu(request):
+    perfil = getattr(request, "perfil_logado", None)
+    if perfil is None:
+        return Response({"detail": "Ninguém está logado."}, status=status.HTTP_401_UNAUTHORIZED)
+    return Response(perfil)

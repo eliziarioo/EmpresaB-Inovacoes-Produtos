@@ -9,4 +9,5 @@ urlpatterns = [
     path("profissionais/<str:id_profissional>", views.detalhar_profissional),
     path("painel", views.painel),
     path("alertas", views.alertas),
+    path("demo/reiniciar", views.reiniciar_demo),
 ]

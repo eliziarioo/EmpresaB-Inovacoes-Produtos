@@ -1,12 +1,370 @@
 {
-  "palavras_chave": ["antes de comecar", "iniciar a solda"],
-  "tipo": "resposta",
-  "resposta": "Segundo o procedimento de reparo por solda, antes de iniciar:",
-  "passos": ["Permissão de trabalho emitida e assinada a bordo."],
-  "citacao": {
-    "documento_id": "doc-001",
-    "secao": "4.2",
-    "pagina": 7,
-    "trecho": "Nenhuma atividade de solda deve ser iniciada sem a permissão de trabalho válida..."
+  "aviso": "Respostas baseadas apenas nos documentos autorizados desta ordem. Em caso de dúvida, confirme com o engenheiro responsável pela inspeção.",
+  "sugestoes": [
+    "O que preciso confirmar antes de começar a solda no V-301?",
+    "Quais certificações a equipe precisa ter?",
+    "O que verificar antes de subir no andaime?",
+    "Qual a pressão de teste do V-301 depois do reparo?",
+    "Quando posso interromper o serviço?"
+  ],
+  "respostas": [
+    {
+      "palavras_chave": ["pressao de teste", "pressao do teste", "valor de pressao", "pressao de projeto"],
+      "tipo": "nao_encontrada",
+      "resposta": "Os documentos autorizados não informam valores de pressão de teste nem de projeto. O PR-SOL-014 diz que os ensaios e o teste após o reparo são definidos pelo engenheiro responsável pela inspeção, com base no projeto e no prontuário do equipamento."
+    },
+    {
+      "palavras_chave": ["parametros de soldagem", "parametros da solda", "corrente de solda", "eletrodo", "material de adicao"],
+      "tipo": "nao_encontrada",
+      "resposta": "Os documentos autorizados não trazem os parâmetros de soldagem. O PR-SOL-014 remete ao procedimento de soldagem qualificado indicado no prontuário do equipamento."
+    },
+    {
+      "palavras_chave": ["antes de comecar", "iniciar a solda", "comecar a solda"],
+      "tipo": "resposta",
+      "resposta": "Segundo o procedimento de reparo por solda, antes de iniciar:",
+      "passos": [
+        "Permissão de trabalho emitida e assinada a bordo antes do início de qualquer atividade.",
+        "Vaso despressurizado, drenado e isolado, com bloqueio e etiquetagem de todas as fontes de energia e de fluidos.",
+        "Trabalho a quente liberado pela segurança da instalação, após a verificação da atmosfera e da área ao redor.",
+        "Início do serviço registrado no aplicativo pelo responsável da equipe, com data e hora."
+      ],
+      "citacao": {
+        "documento_id": "doc-001",
+        "secao": "4.2",
+        "pagina": 7,
+        "trecho": "Nenhuma atividade de solda deve ser iniciada sem a permissão de trabalho válida..."
+      }
+    },
+    {
+      "palavras_chave": ["duvida sobre o isolamento", "duvida no isolamento", "duvida sobre as condicoes de isolamento"],
+      "tipo": "resposta",
+      "resposta": "Segundo o procedimento de reparo por solda, havendo dúvida sobre o isolamento:",
+      "passos": [
+        "O serviço não começa.",
+        "A dúvida é levada ao engenheiro responsável pela inspeção e à segurança da instalação."
+      ],
+      "citacao": {
+        "documento_id": "doc-001",
+        "secao": "4.2.7",
+        "pagina": 7,
+        "trecho": "Se houver dúvida sobre as condições de isolamento, o serviço não começa..."
+      }
+    },
+    {
+      "palavras_chave": ["como isolar o vaso", "isolar o vaso", "isolamento do vaso", "despressurizar", "despressurizacao", "bloqueio e etiquetagem"],
+      "tipo": "resposta",
+      "resposta": "Segundo o manual do V-301, o isolamento do vaso antes de qualquer intervenção inclui:",
+      "passos": [
+        "Despressurização.",
+        "Drenagem.",
+        "Bloqueio e etiquetagem de todas as fontes de energia e de fluidos."
+      ],
+      "citacao": {
+        "documento_id": "doc-002",
+        "secao": "4.3",
+        "pagina": 3,
+        "trecho": "O isolamento do vaso antes de qualquer intervenção inclui despressurização, drenagem, bloqueio e etiquetagem..."
+      }
+    },
+    {
+      "palavras_chave": ["quais certificacoes", "quais habilitacoes", "certificacoes exigidas", "habilitacoes exigidas", "requisitos da equipe"],
+      "tipo": "resposta",
+      "resposta": "Segundo o procedimento de reparo por solda, todo reparo exige no mínimo um soldador qualificado e um profissional habilitado NR-13. Os demais requisitos dependem das condições do serviço:",
+      "passos": [
+        "Instalação offshore: CBSP e HUET válidos, de toda a equipe.",
+        "Trabalho em altura: NR-35 válida, de quem trabalha no andaime ou em altura.",
+        "Reparo por solda: qualificação de soldador válida, de pelo menos um profissional.",
+        "Equipamento é vaso de pressão: profissional habilitado NR-13, com registro profissional ativo (engenheiro responsável pela inspeção).",
+        "Entrada no interior do vaso: NR-33 válida, de todos que entram no espaço confinado."
+      ],
+      "citacao": {
+        "documento_id": "doc-001",
+        "secao": "4.1.1",
+        "pagina": 5,
+        "trecho": "Todo reparo por solda em vaso de pressão exige, no mínimo, um soldador qualificado e um profissional habilitado NR-13..."
+      }
+    },
+    {
+      "palavras_chave": ["vence durante", "validade dos documentos", "data do servico", "vence no meio"],
+      "tipo": "resposta",
+      "resposta": "Segundo o procedimento de reparo por solda, a validade dos documentos funciona assim:",
+      "passos": [
+        "A validade é conferida na data do serviço, e não na data em que a equipe foi escalada.",
+        "Um documento que vence durante o serviço é tratado como vencido."
+      ],
+      "citacao": {
+        "documento_id": "doc-001",
+        "secao": "4.1.2",
+        "pagina": 5,
+        "trecho": "A validade dos documentos é conferida na data do serviço. Um documento que vence durante o serviço é tratado como vencido."
+      }
+    },
+    {
+      "palavras_chave": ["profissional bloqueado", "documento vencido", "certificacao vencida", "pode ser escalado", "posso escalar", "unico disponivel"],
+      "tipo": "resposta",
+      "resposta": "Segundo o procedimento de reparo por solda, para profissional com documento exigido vencido ou ausente:",
+      "passos": [
+        "Ele não deve ser escalado, ainda que seja o único disponível.",
+        "A ordem de serviço permanece sem equipe elegível.",
+        "O gestor decide sobre o replanejamento ou a regularização do documento."
+      ],
+      "citacao": {
+        "documento_id": "doc-001",
+        "secao": "4.1.3",
+        "pagina": 6,
+        "trecho": "Profissional com documento exigido vencido ou ausente não deve ser escalado, ainda que seja o único disponível..."
+      }
+    },
+    {
+      "palavras_chave": ["conflito de agenda", "duas ordens", "mesma data", "indisponivel"],
+      "tipo": "resposta",
+      "resposta": "Segundo o procedimento de reparo por solda, sobre disponibilidade e conflitos de agenda:",
+      "passos": [
+        "Um profissional não pode estar indicado em duas ordens de serviço na mesma data.",
+        "Havendo conflito, aprovar a equipe em uma das ordens devolve a outra para replanejamento.",
+        "Profissionais em folga ou embarcados em outro serviço no período são considerados indisponíveis."
+      ],
+      "citacao": {
+        "documento_id": "doc-001",
+        "secao": "4.1.4",
+        "pagina": 6,
+        "trecho": "Um profissional não pode estar indicado em duas ordens de serviço na mesma data..."
+      }
+    },
+    {
+      "palavras_chave": ["no embarque", "dia do embarque", "conferir no embarque", "conferencia"],
+      "tipo": "resposta",
+      "resposta": "Segundo o procedimento de reparo por solda, no dia do embarque o responsável pela equipe confere:",
+      "passos": [
+        "A presença de todos os profissionais aprovados.",
+        "A validade dos documentos exigidos para a função de cada um.",
+        "A disponibilidade dos equipamentos de proteção e das ferramentas previstas na APR."
+      ],
+      "citacao": {
+        "documento_id": "doc-001",
+        "secao": "4.1.5",
+        "pagina": 6,
+        "trecho": "No dia do embarque, o responsável pela equipe confere..."
+      }
+    },
+    {
+      "palavras_chave": ["substituir", "substituicao", "trocar um profissional", "trocar alguem da equipe", "trocar membro"],
+      "tipo": "resposta",
+      "resposta": "Segundo o procedimento de reparo por solda, a substituição de qualquer profissional após a aprovação exige:",
+      "passos": [
+        "Nova validação contra a matriz de habilitações.",
+        "Nova aprovação do gestor de operações.",
+        "Atualização do dossiê de conformidade com a mudança."
+      ],
+      "citacao": {
+        "documento_id": "doc-001",
+        "secao": "4.1.6",
+        "pagina": 6,
+        "trecho": "A substituição de qualquer profissional após a aprovação exige nova validação contra a matriz de habilitações..."
+      }
+    },
+    {
+      "palavras_chave": ["antes de subir", "subir no andaime", "checklist de altura", "lista de verificacao", "verificar antes de subir"],
+      "tipo": "resposta",
+      "resposta": "Segundo a APR de trabalho em altura, antes de subir a equipe confere:",
+      "passos": [
+        "NR-35 válida para todos que trabalham em altura.",
+        "Cinto tipo paraquedista inspecionado, com dupla ancoragem.",
+        "Pontos de ancoragem identificados e adequados.",
+        "Andaime montado, inspecionado e etiquetado.",
+        "Condições climáticas e de vento verificadas.",
+        "Área abaixo isolada e sinalizada.",
+        "Plano de resgate conhecido pela equipe.",
+        "Permissão de trabalho emitida e assinada a bordo."
+      ],
+      "citacao": {
+        "documento_id": "doc-003",
+        "secao": "Lista de verificação antes de subir",
+        "pagina": 2,
+        "trecho": "NR-35 válida para todos que trabalham em altura..."
+      }
+    },
+    {
+      "palavras_chave": ["resgate", "queda", "caiu", "suspenso no cinto"],
+      "tipo": "resposta",
+      "resposta": "Segundo a APR de trabalho em altura, em caso de queda ou suspensão no cinto:",
+      "passos": [
+        "O integrante mais próximo aciona a segurança da instalação pelo rádio.",
+        "O resgate é iniciado conforme o plano da plataforma.",
+        "Ninguém realiza resgate sem equipamento adequado e sem acionar a segurança."
+      ],
+      "citacao": {
+        "documento_id": "doc-003",
+        "secao": "Plano de resgate",
+        "pagina": 2,
+        "trecho": "Em caso de queda ou suspensão no cinto, o integrante mais próximo aciona a segurança da instalação pelo rádio..."
+      }
+    },
+    {
+      "palavras_chave": ["cinto", "dupla ancoragem", "ancoragem", "andaime"],
+      "tipo": "resposta",
+      "resposta": "Segundo o procedimento de reparo por solda, quando o acesso ao ponto de reparo for por andaime, a equipe:",
+      "passos": [
+        "Cumpre a APR de trabalho em altura vigente.",
+        "Usa cinto tipo paraquedista com dupla ancoragem.",
+        "Mantém comunicação com quem permanece no nível."
+      ],
+      "citacao": {
+        "documento_id": "doc-001",
+        "secao": "5.3",
+        "pagina": 8,
+        "trecho": "Quando o acesso ao ponto de reparo for feito por andaime, a equipe cumpre a APR de trabalho em altura vigente..."
+      }
+    },
+    {
+      "palavras_chave": ["interromper", "parar o servico", "condicao insegura", "alarme"],
+      "tipo": "resposta",
+      "resposta": "Segundo o procedimento de reparo por solda, sobre a interrupção do serviço:",
+      "passos": [
+        "Qualquer integrante da equipe pode e deve interromper o serviço.",
+        "Os motivos são condição insegura, mudança de escopo, perda de comunicação ou alarme da instalação.",
+        "A retomada depende de nova avaliação pelo responsável da equipe e, se necessário, de nova permissão de trabalho."
+      ],
+      "citacao": {
+        "documento_id": "doc-001",
+        "secao": "5.4",
+        "pagina": 8,
+        "trecho": "Qualquer integrante da equipe pode e deve interromper o serviço diante de condição insegura, mudança de escopo, perda de comunicação ou alarme da instalação."
+      }
+    },
+    {
+      "palavras_chave": ["mudanca de escopo", "validade da permissao", "permissao de trabalho vale", "permissao vale", "novo turno"],
+      "tipo": "resposta",
+      "resposta": "Segundo o procedimento de reparo por solda, sobre a validade da permissão de trabalho:",
+      "passos": [
+        "Ela vale apenas para o turno, o local e o escopo nela indicados.",
+        "Qualquer mudança de escopo exige nova permissão."
+      ],
+      "citacao": {
+        "documento_id": "doc-001",
+        "secao": "4.2.6",
+        "pagina": 7,
+        "trecho": "A permissão de trabalho vale apenas para o turno, o local e o escopo nela indicados. Qualquer mudança de escopo exige nova permissão."
+      }
+    },
+    {
+      "palavras_chave": ["atmosfera", "flanges", "seguranca do v-301", "regras de seguranca"],
+      "tipo": "resposta",
+      "resposta": "Segundo o manual do V-301, as regras de segurança são:",
+      "passos": [
+        "Nunca abrir flanges ou bocais com o vaso pressurizado.",
+        "Verificar a atmosfera antes de qualquer entrada no interior do vaso.",
+        "Manter a identificação do equipamento visível e legível.",
+        "Interromper qualquer atividade diante de vazamento, ruído anormal ou alarme."
+      ],
+      "citacao": {
+        "documento_id": "doc-002",
+        "secao": "6",
+        "pagina": 3,
+        "trecho": "Nunca abrir flanges ou bocais com o vaso pressurizado."
+      }
+    },
+    {
+      "palavras_chave": ["boca de visita", "espaco confinado", "entrar no vaso", "entrada no vaso", "nr-33", "mh1"],
+      "tipo": "resposta",
+      "resposta": "Segundo o manual do V-301, sobre o acesso ao interior do vaso:",
+      "passos": [
+        "O acesso ao interior é pela boca de visita (MH1).",
+        "A entrada exige NR-33."
+      ],
+      "citacao": {
+        "documento_id": "doc-002",
+        "secao": "3",
+        "pagina": 2,
+        "trecho": "Acesso ao interior. Entrada exige NR-33."
+      }
+    },
+    {
+      "palavras_chave": ["bocal de saida", "bocal n2", "n2", "abertura e fechamento"],
+      "tipo": "resposta",
+      "resposta": "Segundo o manual do V-301, sobre o bocal de saída (N2):",
+      "passos": [
+        "N2 é o bocal de saída do fluido.",
+        "É flangeado, na lateral inferior.",
+        "Atenção especial na abertura e no fechamento."
+      ],
+      "citacao": {
+        "documento_id": "doc-002",
+        "secao": "3",
+        "pagina": 2,
+        "trecho": "Flangeado, na lateral inferior. Atenção especial na abertura e no fechamento."
+      }
+    },
+    {
+      "palavras_chave": ["registro de execucao", "registrar o reparo", "prontuario", "dossie"],
+      "tipo": "resposta",
+      "resposta": "Segundo o procedimento de reparo por solda, os registros do serviço são:",
+      "passos": [
+        "Registro de execução no aplicativo, com início, interrupções e término.",
+        "Dossiê de conformidade da equipe, gerado na aprovação e atualizado a cada mudança.",
+        "Atualização do prontuário do equipamento com o reparo realizado."
+      ],
+      "citacao": {
+        "documento_id": "doc-001",
+        "secao": "6.3",
+        "pagina": 9,
+        "trecho": "Registro de execução no aplicativo, com início, interrupções e término."
+      }
+    },
+    {
+      "palavras_chave": ["responsavel pela inspecao", "liberar o equipamento", "quem libera", "quem define os ensaios", "ensaios"],
+      "tipo": "resposta",
+      "resposta": "Segundo o procedimento de reparo por solda, o engenheiro responsável pela inspeção:",
+      "passos": [
+        "Define o escopo do reparo.",
+        "Acompanha a execução.",
+        "Libera o equipamento.",
+        "Define ensaios e testes."
+      ],
+      "citacao": {
+        "documento_id": "doc-001",
+        "secao": "3.3",
+        "pagina": 4,
+        "trecho": "Definir o escopo do reparo, acompanhar a execução, liberar o equipamento e definir ensaios e testes."
+      }
+    },
+    {
+      "palavras_chave": ["quais documentos", "documentos autorizados", "documento de outro equipamento", "posso usar o manual"],
+      "tipo": "resposta",
+      "resposta": "Segundo o procedimento de reparo por solda, a equipe recebe e consulta apenas documentos aprovados e vigentes:",
+      "passos": [
+        "Este procedimento (PR-SOL-014).",
+        "O manual do equipamento.",
+        "A APR do trabalho em altura, quando aplicável.",
+        "Documentos de outros equipamentos não devem ser usados como referência."
+      ],
+      "citacao": {
+        "documento_id": "doc-001",
+        "secao": "3.4",
+        "pagina": 4,
+        "trecho": "Para cada ordem de serviço de reparo por solda, a equipe recebe e consulta apenas documentos aprovados e vigentes..."
+      }
+    },
+    {
+      "palavras_chave": ["o que e cbsp", "o que e huet", "o que significa cbsp", "o que significa huet", "o que e pt", "o que significa pt"],
+      "tipo": "resposta",
+      "resposta": "Segundo o procedimento de reparo por solda, as siglas significam:",
+      "passos": [
+        "CBSP: Curso Básico de Segurança em Plataforma.",
+        "HUET: Treinamento de escape de helicóptero submerso (Helicopter Underwater Escape Training).",
+        "PT: Permissão de trabalho, emitida para um local, um turno e um escopo definidos."
+      ],
+      "citacao": {
+        "documento_id": "doc-001",
+        "secao": "3.2",
+        "pagina": 3,
+        "trecho": "Curso Básico de Segurança em Plataforma."
+      }
+    }
+  ],
+  "resposta_nao_encontrada": {
+    "titulo": "Não encontrei isso nos documentos",
+    "resposta": "Essa informação não consta nos documentos autorizados desta ordem.",
+    "complemento": "Para não correr risco, confirme com o responsável antes de seguir."
   }
 }

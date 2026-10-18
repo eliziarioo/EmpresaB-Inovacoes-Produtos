@@ -9,6 +9,8 @@ arquivos JSON fictícios (`dados/`) e tudo o que muda durante a demonstração f
 Precisa de Python 3.10 ou mais novo. A partir da raiz do repositório:
 
 
+**Windows (cmd):**
+
 ```
 cd api
 python -m venv .venv
@@ -17,13 +19,25 @@ pip install -r requirements.txt
 python manage.py runserver
 ```
 
+**macOS / Linux (Terminal):**
+
+```
+cd api
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python manage.py runserver
+```
+
+No Mac, se `python3` ou `pip` não forem encontrados, use `python3 -m pip install -r requirements.txt` no lugar do `pip install`.
+
 
 A API sobe em `http://127.0.0.1:8000/painel`.
 
-- Abrir só `http://127.0.0.1:8000/` da **404, e é normal**: não existe rota na raiz. Comece por `/painel`.
+- Abrir só `http://127.0.0.1:8000/` dá **404, e é normal**: não existe rota na raiz. Comece por `/painel`.
 - O terminal pode avisar sobre "unapplied migrations". Pode ignorar, o projeto não usa banco de dados.
 - O CORS está liberado, então o front pode chamar a API de outra porta.
-- Para parar o servidor: `Ctrl + C`.
+- Para parar o servidor: `Ctrl + C` (no Mac também é `Control + C`, não o `Command`).
 
 ## Estrutura do projeto
 
@@ -289,13 +303,21 @@ use o campo **Content** no fim da página, escreva o JSON completo (com chaves) 
 ### No terminal, com `curl` (necessário para testar login e bloqueios)
 
 O navegador não permite enviar cabeçalhos, então o teste de permissão é pelo `curl` (no Windows 10+ ele já vem
-instalado). Exemplos para o cmd:
+instalado; no Mac e no Linux também). O login muda de um sistema para o outro por causa das aspas.
+
+**Windows (cmd):**
 
 ```
 curl -X POST -H "Content-Type: application/json" -d "{\"usuario\":\"paulo\",\"senha\":\"tecnico123\"}" http://127.0.0.1:8000/entrar
 ```
 
-Copie o `token` da resposta e use no lugar de `COLE_O_TOKEN`:
+**macOS / Linux (Terminal):**
+
+```
+curl -X POST -H "Content-Type: application/json" -d '{"usuario":"paulo","senha":"tecnico123"}' http://127.0.0.1:8000/entrar
+```
+
+Copie o `token` da resposta e use no lugar de `COLE_O_TOKEN`. Os comandos abaixo são **iguais no Windows e no Mac**:
 
 ```
 curl -i -H "Authorization: Bearer COLE_O_TOKEN" http://127.0.0.1:8000/painel
@@ -311,7 +333,7 @@ curl -H "Authorization: Bearer COLE_O_TOKEN" http://127.0.0.1:8000/eu
 | 404 em `http://127.0.0.1:8000/` | Não existe rota na raiz | Abra `/painel` |
 | 405 ao abrir `/demo/reiniciar`, `/entrar` ou `/chat` | Rota só aceita POST | Use o botão POST (campo Content da página) |
 | "JSON parse error" | Body sem as chaves | Envie o objeto completo: `{"campo": "valor"}` |
-| `AttributeError: module 'operacoes.regras' has no attribute ...` | O arquivo não foi salvo | Salve com `Ctrl + S` (ative o Auto Save no VS Code) |
+| `AttributeError: module 'operacoes.regras' has no attribute ...` | O arquivo não foi salvo | Salve com `Ctrl + S` (Mac: `Cmd + S`) e ative o Auto Save no VS Code |
 | `KeyError` ao ler profissional ou ordem | JSON antigo, sem os campos novos | Substitua pelo JSON atual do repositório |
 | Perdi a aprovação / o login | O servidor reiniciou (um `.py` foi salvo) | Refaça a ação; para a demo, não edite código com o servidor rodando |
 | 401 "Sessão inválida ou expirada" | Token antigo (servidor reiniciou) | Faça `POST /entrar` de novo |

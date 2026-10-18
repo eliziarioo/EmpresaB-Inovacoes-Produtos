@@ -1159,3 +1159,73 @@ def montar_servicos_do_profissional(profissional, incluir_indicados=False):
         "servicos": servicos,
         "notificacoes": notificacoes,
     }
+
+
+def pergunta_contem(texto_normalizado, palavra_chave):
+    padrao = r"\b" + re.escape(normalizar(palavra_chave)) + r"\b"
+    return re.search(padrao, texto_normalizado) is not None
+
+
+def achar_responsavel_pela_inspecao(ordem):
+    if not ordem:
+        return None
+
+    for id_membro in ids_da_equipe_atual(ordem):
+        membro = achar_profissional(id_membro)
+        if membro and membro["funcao"] == "engenharia de inspeção":
+            partes_do_nome = membro["nome"].split()
+            return {
+                "profissional_id": membro["id"],
+                "nome": membro["nome"],
+                "rotulo": f"Falar com {partes_do_nome[0]} {partes_do_nome[-1]}",
+            }
+    return None
+
+
+def responder_pergunta(pergunta, ordem):
+    chat = carregar_dados("chat_respostas.json")
+    texto = normalizar(pergunta)
+    autorizados = ordem.get("documentos_autorizados", []) if ordem else []
+
+    escolhida = None
+    for candidata in chat["respostas"]:
+        if any(pergunta_contem(texto, palavra) for palavra in candidata["palavras_chave"]):
+            escolhida = candidata
+            break
+
+    # Só responde com documento autorizado para esta ordem
+    if escolhida and escolhida["tipo"] == "resposta":
+        documento = achar_documento(escolhida["citacao"]["documento_id"])
+        if documento and documento["id"] in autorizados:
+            return {
+                "tipo": "resposta",
+                "resposta": escolhida["resposta"],
+                "passos": escolhida["passos"],
+                "citacao": {
+                    "documento_id": documento["id"],
+                    "codigo": documento["codigo"],
+                    "titulo": documento["titulo_completo"],
+                    "versao": documento["versao"],
+                    "secao": escolhida["citacao"]["secao"],
+                    "pagina": escolhida["citacao"]["pagina"],
+                    "trecho": escolhida["citacao"]["trecho"],
+                    "arquivo_url": f"/documentos/{documento['id']}/arquivo",
+                },
+                "aviso": chat["aviso"],
+                "escalar_para": None,
+            }
+
+    padrao = chat["resposta_nao_encontrada"]
+    texto_da_resposta = padrao["resposta"]
+    if escolhida and escolhida["tipo"] == "nao_encontrada":
+        texto_da_resposta = escolhida["resposta"]
+
+    return {
+        "tipo": "nao_encontrada",
+        "titulo": padrao["titulo"],
+        "resposta": texto_da_resposta,
+        "complemento": padrao["complemento"],
+        "citacao": None,
+        "aviso": chat["aviso"],
+        "escalar_para": achar_responsavel_pela_inspecao(ordem),
+    }

@@ -74,16 +74,16 @@
         {"campo": "equipamento", "contem": "vaso de pressao"}
       ],
       "funcoes": [
-        {"funcao": "engenharia de inspeção", "qtd": 1, "papel": "responsável pela inspeção NR-13"},
-        {"funcao": "soldador", "qtd": 1, "papel": "soldagem do bocal", "historico_como_detalhe": true},
-        {"funcao": "caldeireiro", "qtd": 1, "papel": "abertura e fechamento do bocal"}
+        {"funcao": "engenharia de inspeção", "qtd": 1, "papel": "responsável pela inspeção NR-13", "papel_detalhado": "inspeção NR-13 do vaso e liberação do reparo"},
+        {"funcao": "soldador", "qtd": 1, "papel": "soldagem do bocal", "papel_detalhado": "soldagem do bocal de saída", "historico_como_detalhe": true},
+        {"funcao": "caldeireiro", "qtd": 1, "papel": "abertura e fechamento do bocal", "papel_detalhado": "abertura e fechamento do bocal, em altura (NR-35)"}
       ]
     },
     {
       "id": "C2",
       "se": [{"campo": "atividades", "contem": "limpeza interna"}],
       "funcoes": [
-        {"funcao": "caldeireiro", "qtd": 2, "papel": "limpeza interna do tanque"}
+        {"funcao": "caldeireiro", "qtd": 2, "papel": "limpeza interna do tanque", "papel_detalhado": "limpeza interna do tanque, em espaço confinado"}
       ]
     }
   ]

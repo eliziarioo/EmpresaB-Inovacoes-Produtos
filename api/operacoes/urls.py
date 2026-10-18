@@ -24,4 +24,6 @@ urlpatterns = [
     path("entrar", views.entrar),
     path("sair", views.sair),
     path("eu", views.quem_sou_eu),
+    path("chat", views.conversar),
+    path("chat/sugestoes", views.sugestoes_do_chat),
 ]

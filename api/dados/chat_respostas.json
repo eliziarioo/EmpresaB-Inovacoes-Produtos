@@ -1,0 +1,12 @@
+{
+  "palavras_chave": ["antes de comecar", "iniciar a solda"],
+  "tipo": "resposta",
+  "resposta": "Segundo o procedimento de reparo por solda, antes de iniciar:",
+  "passos": ["Permissão de trabalho emitida e assinada a bordo."],
+  "citacao": {
+    "documento_id": "doc-001",
+    "secao": "4.2",
+    "pagina": 7,
+    "trecho": "Nenhuma atividade de solda deve ser iniciada sem a permissão de trabalho válida..."
+  }
+}

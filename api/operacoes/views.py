@@ -95,6 +95,7 @@ def painel(request):
             "os_abertas": ordens_abertas,
             "aguardando_aprovacao": ordens_aguardando_aprovacao,
             "em_execucao": ordens_em_execucao,
+            "alertas_ativos": len(regras.montar_alertas()),
             "profissionais_disponiveis": regras.contar_disponiveis_por_funcao(),
         },
     })
@@ -276,3 +277,20 @@ def quem_sou_eu(request):
     if perfil is None:
         return Response({"detail": "Ninguém está logado."}, status=status.HTTP_401_UNAUTHORIZED)
     return Response(perfil)
+
+
+@api_view(["POST"])
+def conversar(request):
+    pergunta = str(request.data.get("pergunta", "")).strip()
+    if not pergunta:
+        raise ValidationError("Envie a 'pergunta'.")
+
+    id_ordem = request.data.get("ordem_id")
+    ordem = ordem_ou_404(id_ordem) if id_ordem else None
+    return Response(regras.responder_pergunta(pergunta, ordem))
+
+
+@api_view(["GET"])
+def sugestoes_do_chat(request):
+    chat = carregar_dados("chat_respostas.json")
+    return Response({"sugestoes": chat["sugestoes"], "aviso": chat["aviso"]})

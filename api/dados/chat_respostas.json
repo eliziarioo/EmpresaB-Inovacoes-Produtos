@@ -11,7 +11,7 @@
     {
       "palavras_chave": ["pressao de teste", "pressao do teste", "valor de pressao", "pressao de projeto"],
       "tipo": "nao_encontrada",
-      "resposta": "Os documentos autorizados não informam valores de pressão de teste nem de projeto. O PR-SOL-014 diz que os ensaios e o teste após o reparo são definidos pelo engenheiro responsável pela inspeção, com base no projeto e no prontuário do equipamento."
+      "resposta": "Os documentos autorizados não informam valores de pressão de teste nem de projeto. O PR-SOL-014 (seção 6.2, página 9) diz que os ensaios e o teste após o reparo são definidos pelo engenheiro responsável pela inspeção, com base no projeto e no prontuário do equipamento."
     },
     {
       "palavras_chave": ["parametros de soldagem", "parametros da solda", "corrente de solda", "eletrodo", "material de adicao"],
@@ -148,7 +148,7 @@
       }
     },
     {
-      "palavras_chave": ["substituir", "substituicao", "trocar um profissional", "trocar alguem da equipe", "trocar membro"],
+      "palavras_chave": ["substituir", "substituicao", "trocar", "trocar um profissional", "trocar alguem da equipe", "trocar membro"],
       "tipo": "resposta",
       "resposta": "Segundo o procedimento de reparo por solda, a substituição de qualquer profissional após a aprovação exige:",
       "passos": [
@@ -185,7 +185,7 @@
       }
     },
     {
-      "palavras_chave": ["resgate", "queda", "caiu", "suspenso no cinto"],
+      "palavras_chave": ["resgate", "queda", "caiu", "cair", "suspenso no cinto"],
       "tipo": "resposta",
       "resposta": "Segundo a APR de trabalho em altura, em caso de queda ou suspensão no cinto:",
       "passos": [
@@ -265,7 +265,7 @@
       }
     },
     {
-      "palavras_chave": ["boca de visita", "espaco confinado", "entrar no vaso", "entrada no vaso", "nr-33", "mh1"],
+      "palavras_chave": ["boca de visita", "espaco confinado", "entrar no vaso", "entro no vaso", "entrada no vaso", "nr-33", "mh1"],
       "tipo": "resposta",
       "resposta": "Segundo o manual do V-301, sobre o acesso ao interior do vaso:",
       "passos": [
@@ -296,7 +296,7 @@
       }
     },
     {
-      "palavras_chave": ["registro de execucao", "registrar o reparo", "prontuario", "dossie"],
+      "palavras_chave": ["registro de execucao", "registrar o reparo", "registro o reparo", "onde registro", "prontuario", "dossie"],
       "tipo": "resposta",
       "resposta": "Segundo o procedimento de reparo por solda, os registros do serviço são:",
       "passos": [

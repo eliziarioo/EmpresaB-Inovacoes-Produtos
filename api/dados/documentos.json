@@ -1,0 +1,35 @@
+[
+  {
+    "id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "titulo": "Reparo por solda em vasos",
+    "titulo_completo": "Reparo por solda em vasos de pressão",
+    "tipo": "procedimento",
+    "versao": "3",
+    "aprovado_em": "2026-08",
+    "descricao_curta": "Versão 3 · aprovado em 08/2026",
+    "arquivo": "PR-SOL-014.pdf"
+  },
+  {
+    "id": "doc-002",
+    "codigo": "MAN-V-301",
+    "titulo": "Manual do vaso V-301",
+    "titulo_completo": "Manual do vaso de pressão V-301",
+    "tipo": "manual_fabricante",
+    "versao": "revisão 2",
+    "aprovado_em": null,
+    "descricao_curta": "Fabricante · revisão 2",
+    "arquivo": "manual-vaso-V-301.pdf"
+  },
+  {
+    "id": "doc-003",
+    "codigo": "APR",
+    "titulo": "APR · trabalho em altura",
+    "titulo_completo": "APR - Trabalho em altura",
+    "tipo": "apr",
+    "versao": "5",
+    "aprovado_em": null,
+    "descricao_curta": "Modelo da empresa · versão 5",
+    "arquivo": "APR-trabalho-em-altura.pdf"
+  }
+]

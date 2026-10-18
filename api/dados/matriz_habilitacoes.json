@@ -1,0 +1,90 @@
+{
+  "versao": "1.2",
+  "aprovada_por": "SST",
+  "aprovada_em": "2026-10-01",
+  "regras": [
+    {
+      "id": "R1",
+      "se": [{"campo": "ambiente", "valor": "offshore"}],
+      "exige": {
+        "nome": "CBSP e HUET válidos",
+        "chips": ["CBSP", "HUET"],
+        "certificacoes": ["CBSP", "HUET"],
+        "aplica_a": "todos",
+        "aplica_a_texto": "Toda a equipe",
+        "motivo": "porque o serviço é offshore"
+      }
+    },
+    {
+      "id": "R2",
+      "se": [{"campo": "condicao_de_acesso", "contem": "altura"}],
+      "exige": {
+        "nome": "NR-35",
+        "chips": ["NR-35"],
+        "certificacoes": ["NR-35"],
+        "aplica_a": "todos",
+        "aplica_a_texto": "Quem trabalha no andaime",
+        "motivo": "porque há trabalho em altura"
+      }
+    },
+    {
+      "id": "R3",
+      "se": [{"campo": "atividades", "contem": "solda"}],
+      "exige": {
+        "nome": "Soldador qualificado",
+        "chips": ["Soldador qualificado"],
+        "certificacoes": ["SOLDADOR_QUALIFICADO"],
+        "aplica_a": "um",
+        "funcao": "soldador",
+        "aplica_a_texto": "1 profissional",
+        "motivo": "porque há reparo com solda"
+      }
+    },
+    {
+      "id": "R4",
+      "se": [{"campo": "equipamento", "contem": "vaso de pressao"}],
+      "exige": {
+        "nome": "Profissional habilitado NR-13",
+        "chips": ["Profissional habilitado NR-13"],
+        "certificacoes": ["NR-13", "CREA"],
+        "aplica_a": "um",
+        "funcao": "engenharia de inspeção",
+        "aplica_a_texto": "Engenheiro responsável pela inspeção",
+        "motivo": "porque o equipamento é vaso de pressão"
+      }
+    },
+    {
+      "id": "R5",
+      "se": [{"campo": "espaco_confinado", "valor": true}],
+      "exige": {
+        "nome": "NR-33",
+        "chips": ["NR-33"],
+        "certificacoes": ["NR-33"],
+        "aplica_a": "todos",
+        "aplica_a_texto": "Toda a equipe",
+        "motivo": "porque há entrada em espaço confinado"
+      }
+    }
+  ],
+  "composicoes": [
+    {
+      "id": "C1",
+      "se": [
+        {"campo": "atividades", "contem": "solda"},
+        {"campo": "equipamento", "contem": "vaso de pressao"}
+      ],
+      "funcoes": [
+        {"funcao": "engenharia de inspeção", "qtd": 1, "papel": "responsável pela inspeção NR-13", "papel_detalhado": "inspeção NR-13 do vaso e liberação do reparo"},
+        {"funcao": "soldador", "qtd": 1, "papel": "soldagem do bocal", "papel_detalhado": "soldagem do bocal de saída", "historico_como_detalhe": true},
+        {"funcao": "caldeireiro", "qtd": 1, "papel": "abertura e fechamento do bocal", "papel_detalhado": "abertura e fechamento do bocal, em altura (NR-35)"}
+      ]
+    },
+    {
+      "id": "C2",
+      "se": [{"campo": "atividades", "contem": "limpeza interna"}],
+      "funcoes": [
+        {"funcao": "caldeireiro", "qtd": 2, "papel": "limpeza interna do tanque", "papel_detalhado": "limpeza interna do tanque, em espaço confinado"}
+      ]
+    }
+  ]
+}

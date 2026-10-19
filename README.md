@@ -103,39 +103,51 @@ Objetivo da área: definir a solução proposta e mostrar como o produto atende 
 
 A partir da raiz do repositório, siga os passos abaixo para executar o protótipo localmente em sua máquina:
 
-1. Pelo terminal, acesse a pasta da API e crie o ambiente virtual:
+1. Pelo terminal, acesse a pasta da API:
 
-   **Windows (cmd):**
 ```bash
    cd api
-   python -m venv .venv
-   .venv\Scripts\activate
-```
-
-   **macOS / Linux (Terminal):**
-```bash
-   cd api
-   python3 -m venv .venv
-   source .venv/bin/activate
 ```
 
 2. Instale as dependências necessárias do Python:
 
+   **Windows (cmd):**
 ```bash
    pip install -r requirements.txt
 ```
 
-   > No Mac, se `python3` ou `pip` não forem encontrados, use `python3 -m pip install -r requirements.txt` no lugar do `pip install`.
+   **macOS / Linux (Terminal):**
+```bash
+   python3 -m pip install -r requirements.txt
+```
 
-3. Inicie o servidor do Django:
+3. Instale o django-cors-headers (necessário para liberar o CORS):
 
+   **Windows (cmd):**
+```bash
+   pip install django-cors-headers
+```
+
+   **macOS / Linux (Terminal):**
+```bash
+   python3 -m pip install django-cors-headers
+```
+
+4. Inicie o servidor do Django:
+
+   **Windows (cmd):**
 ```bash
    python manage.py runserver
 ```
 
-4. Abra o seu navegador de preferência e acesse o endereço:
-   http://127.0.0.1:8000/painel
+   **macOS / Linux (Terminal):**
+```bash
+   python3 manage.py runserver
+```
 
+5. Abra o seu navegador de preferência e acesse o endereço:
+   http://127.0.0.1:8000/painel
+   
 **Observações:**
 
 - Abrir só `http://127.0.0.1:8000/` dá **404, e é normal**: não existe rota na raiz. Comece por `/painel`.

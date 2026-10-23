@@ -1,0 +1,270 @@
+
+.gestor-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  color: #16201f;
+  font-family: "Open Sans", Arial, sans-serif;
+}
+
+.gestor-container * {
+  box-sizing: border-box;
+}
+
+.gestor-topo {
+  margin-bottom: 28px;
+}
+
+.gestor-topo h1 {
+  font-size: 30px;
+  margin: 12px 0;
+}
+
+.gestor-topo p {
+  color: #66716c;
+}
+
+.gestor-etiqueta {
+  display: inline-block;
+  color: #ec4e00;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.gestor-card {
+  background: #ffffff;
+  border: 1px solid #d9ddd8;
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 24px;
+}
+
+.gestor-card h2 {
+  margin-top: 0;
+}
+
+.gestor-card h3 {
+  margin: 22px 0;
+}
+
+.gestor-card-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.gestor-status {
+  background: #fff0e6;
+  color: #b94300;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.gestor-informacoes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+  padding: 18px;
+  background: #f3f4f1;
+  border-radius: 8px;
+}
+
+.gestor-informacoes p {
+  margin: 0;
+}
+
+.gestor-card label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.gestor-card textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #c9cfc9;
+  border-radius: 8px;
+  font: inherit;
+  resize: vertical;
+  min-height: 150px;
+}
+
+.gestor-card textarea:focus {
+  outline: 2px solid #ec4e00;
+  outline-offset: 2px;
+}
+
+.gestor-acoes {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.gestor-botao {
+  background: #ec4e00;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 13px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.gestor-botao:hover {
+  background: #c94200;
+}
+
+.gestor-botao:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.gestor-botao-secundario {
+  background: #ffffff;
+  color: #16201f;
+  border: 1px solid #c9cfc9;
+  border-radius: 8px;
+  padding: 13px 22px;
+  cursor: pointer;
+}
+
+.gestor-voltar {
+  display: block;
+  border: none;
+  background: transparent;
+  color: #ec4e00;
+  cursor: pointer;
+  margin-bottom: 24px;
+  padding: 0;
+  font-size: 14px;
+}
+
+.gestor-justificativa {
+  padding: 18px;
+  border-left: 4px solid #ec4e00;
+  background: #fff6f0;
+  border-radius: 6px;
+  margin: 24px 0;
+}
+
+.gestor-justificativa p {
+  margin-bottom: 0;
+}
+
+.gestor-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.gestor-profissional {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  border: 1px solid #d9ddd8;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.gestor-profissional h4 {
+  margin: 0 0 6px;
+  font-size: 17px;
+}
+
+.gestor-profissional p {
+  margin: 0 0 12px;
+  color: #66716c;
+}
+
+.gestor-certificacoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.gestor-certificacoes span {
+  background: #f3f4f1;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.gestor-disponibilidade {
+  color: #28744c;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.gestor-modal-fundo {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.gestor-modal {
+  background: white;
+  width: 100%;
+  max-width: 480px;
+  border-radius: 14px;
+  padding: 30px;
+  color: #16201f;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+}
+
+.gestor-modal h2 {
+  margin-top: 0;
+}
+
+.gestor-modal p {
+  line-height: 1.6;
+}
+
+.gestor-erro {
+  color: #b42318;
+  margin-top: 14px;
+}
+
+.gestor-sucesso {
+  color: #28744c;
+  font-weight: 700;
+}
+
+@media (max-width: 700px) {
+  .gestor-container {
+    padding: 20px 14px;
+  }
+
+  .gestor-card {
+    padding: 18px;
+  }
+
+  .gestor-informacoes {
+    grid-template-columns: 1fr;
+  }
+
+  .gestor-profissional {
+    flex-direction: column;
+  }
+
+  .gestor-acoes {
+    flex-wrap: wrap;
+  }
+
+  .gestor-topo h1 {
+    font-size: 25px;
+  }
+}

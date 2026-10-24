@@ -10,7 +10,6 @@ import { AuthContext } from './useAuth.js'
 export function AuthProvider({ children }) {
   const [perfil, setPerfil] = useState(lerPerfilGuardado)
 
-  // Se a API devolver 401, esquecemos o perfil e as rotas mandam para o login.
   useEffect(() => {
     definirAoExpirar(() => setPerfil(null))
   }, [])

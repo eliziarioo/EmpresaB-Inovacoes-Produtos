@@ -1,6 +1,5 @@
 import { chamarApi } from '../../../services/api.js'
 
-// Painel do gestor: tudo vem da API (contadores, ordens e alertas).
 export function buscarPainel() {
   return chamarApi('/painel')
 }
@@ -13,9 +12,6 @@ export function buscarAlertas() {
   return chamarApi('/alertas')
 }
 
-// Documentos: a API ainda não tem status nem data completa (pendência registrada).
-// Enquanto isso usamos dados de exemplo, no formato proposto para a API.
-// Quando as rotas existirem, é só mudar USAR_MOCK para false.
 const USAR_MOCK = true
 
 const DOCUMENTOS_EXEMPLO = [
@@ -72,18 +68,15 @@ const DOCUMENTOS_EXEMPLO = [
 ]
 
 export async function buscarDocumentos() {
-  // Devolve uma cópia: a tela guarda a lista no estado e não pode dividir o array.
   if (USAR_MOCK) return [...DOCUMENTOS_EXEMPLO]
   return chamarApi('/documentos')
 }
 
-// O PDF exige o token, então baixamos pela API e abrimos numa aba nova.
 export async function abrirArquivoDoDocumento(arquivoUrl) {
   const arquivo = await chamarApi(arquivoUrl, { tipo: 'blob' })
   window.open(URL.createObjectURL(arquivo), '_blank')
 }
 
-// Usuários e auditoria também ainda não existem na API: dados de exemplo.
 const USUARIOS_EXEMPLO = [
   { id: 'usr-001', nome: 'Marina Costa', email: 'marina.costa@empresa.com.br', perfil: 'gestor', ativo: true },
   { id: 'usr-002', nome: 'Ricardo Alves', email: 'ricardo.alves@empresa.com.br', perfil: 'administrador', ativo: true },
@@ -117,8 +110,6 @@ function registrarAuditoria(ator, acao, documento) {
   })
 }
 
-// Envio simulado: não sobe o arquivo, só cria o documento e registra na auditoria.
-// Com a API pronta, o POST recebe os mesmos campos.
 export async function enviarDocumento(dados, ator) {
   if (!USAR_MOCK) {
     return chamarApi('/documentos', { metodo: 'POST', corpo: dados })
@@ -143,7 +134,6 @@ export async function enviarDocumento(dados, ator) {
   return documento
 }
 
-// Mais recente primeiro, como a API vai devolver.
 export async function buscarAuditoria() {
   if (USAR_MOCK) {
     return [...AUDITORIA_EXEMPLO]

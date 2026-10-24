@@ -9,7 +9,6 @@ const DESTAQUES = [
   'Aprovação sempre feita por uma pessoa',
 ]
 
-// "Entrar como...": só escolhe o perfil; e-mail e senha continuam obrigatórios.
 const PERFIS = [
   { tipo: 'gestor', rotulo: 'Gestor', exemplo: 'marina@empresa.com.br' },
   { tipo: 'tecnico', rotulo: 'Técnico', exemplo: 'paulo@empresa.com.br' },
@@ -40,10 +39,8 @@ function Login() {
   const [mostrarSenha, setMostrarSenha] = useState(false)
   const [lembrar, setLembrar] = useState(true)
   const [erro, setErro] = useState('')
-  const [aviso, setAviso] = useState('')
   const [enviando, setEnviando] = useState(false)
 
-  // Quem já está logado não precisa ver o login de novo.
   if (perfil) return <Navigate to={perfil.tela_inicial} replace />
 
   async function aoEnviar(evento) {
@@ -155,18 +152,11 @@ function Login() {
               />
               Lembrar de mim
             </label>
-            <button
-              type="button"
-              className="link"
-              onClick={() =>
-                setAviso('Recuperação de senha não faz parte do protótipo.')
-              }
-            >
+            <button type="button" className="link">
               Esqueci minha senha
             </button>
           </div>
 
-          {aviso && <p className="login-aviso">{aviso}</p>}
           {erro && (
             <p className="login-erro" role="alert">
               {erro}

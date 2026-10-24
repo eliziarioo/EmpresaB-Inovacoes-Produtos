@@ -9,14 +9,12 @@ import {
 } from '../services/adminService.js'
 import '../parteA.css'
 
-// Como cada status aparece na tabela: texto, cor do selo e ícone.
 const STATUS = {
   aprovado: { texto: 'Aprovado', classe: 'selo-apto', Icone: IconeCheck },
   rascunho: { texto: 'Rascunho', classe: 'selo-atencao', Icone: IconeLapis },
   obsoleto: { texto: 'Obsoleto', classe: 'selo-neutro', Icone: IconeQuadrado },
 }
 
-// "2026-08-12" vira "12/08/2026"; sem data, um traço.
 function formatarData(iso) {
   if (!iso) return '—'
   const [ano, mes, dia] = iso.split('-')
@@ -29,7 +27,6 @@ function Documentos() {
   const [erro, setErro] = useState('')
   const [janelaAberta, setJanelaAberta] = useState(false)
   const [aviso, setAviso] = useState('')
-  // Muda a cada envio, para a Auditoria buscar a lista de novo.
   const [envios, setEnvios] = useState(0)
 
   useEffect(() => {

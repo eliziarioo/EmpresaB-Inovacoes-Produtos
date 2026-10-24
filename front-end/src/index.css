@@ -1,8 +1,3 @@
-/*
-  Cores copiadas das variáveis do Figma (coleção "Cores", modo claro).
-  O laranja dos botões não é variável no Figma, é a cor solta #EC4E00;
-  por isso aqui ele se chama --laranja e não --principal (que é o azul-petróleo).
-*/
 :root {
   --fundo: #f3f4f1;
   --superficie: #ffffff;
@@ -24,7 +19,6 @@
   --apto-suave: #e5f1e8;
   --neutro-suave: #eef0ec;
 
-  /* Cores soltas do Figma (sem variável) */
   --laranja: #ec4e00;
   --laranja-escuro: #b83c00;
   --escuro: #16201f;

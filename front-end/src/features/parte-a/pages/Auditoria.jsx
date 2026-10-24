@@ -2,14 +2,12 @@ import { useEffect, useState } from 'react'
 import { buscarAuditoria } from '../services/adminService.js'
 import '../parteA.css'
 
-// "2026-10-22T14:32:00" vira "22/10 · 14:32".
 function formatarDataHora(iso) {
   const [data, hora] = iso.split('T')
   const [, mes, dia] = data.split('-')
   return `${dia}/${mes} · ${hora.slice(0, 5)}`
 }
 
-// "atualizacao" muda quando algo novo é registrado, e a lista é buscada de novo.
 function Auditoria({ atualizacao }) {
   const [registros, setRegistros] = useState([])
   const [erro, setErro] = useState('')

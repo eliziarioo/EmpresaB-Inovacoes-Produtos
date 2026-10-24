@@ -22,8 +22,6 @@ function formatarTamanho(bytes) {
   return `${(bytes / (1024 * 1024)).toFixed(1).replace('.', ',')} MB`
 }
 
-// Janela de envio (simulada). Quem abre decide quando ela existe: ao fechar,
-// o componente some e o formulário volta vazio na próxima vez.
 function EnviarDocumento({ aoFechar, aoEnviar }) {
   const { perfil } = useAuth()
   const seletorDeArquivo = useRef(null)
@@ -39,7 +37,6 @@ function EnviarDocumento({ aoFechar, aoEnviar }) {
   const [erro, setErro] = useState('')
   const [enviando, setEnviando] = useState(false)
 
-  // Esc fecha a janela.
   useEffect(() => {
     function aoApertarTecla(evento) {
       if (evento.key === 'Escape') aoFechar()
@@ -59,7 +56,6 @@ function EnviarDocumento({ aoFechar, aoEnviar }) {
     setErro('')
     setArquivo(escolhido)
 
-    // "PR-ESP-021_v1.pdf" sugere código "PR-ESP-021" e versão "1".
     const [sugestaoCodigo, sugestaoVersao] = escolhido.name
       .replace(/\.pdf$/i, '')
       .split('_')
@@ -75,7 +71,6 @@ function EnviarDocumento({ aoFechar, aoEnviar }) {
     setNovoItem('')
   }
 
-  // Enter adiciona o item em vez de enviar o formulário.
   function aoApertarNoItem(evento) {
     if (evento.key === 'Enter') {
       evento.preventDefault()

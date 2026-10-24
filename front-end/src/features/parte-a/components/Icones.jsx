@@ -1,4 +1,3 @@
-// Ícones simples em SVG. Usam "currentColor", então pegam a cor do texto onde estiverem.
 function Icone({ tamanho = 16, children }) {
   return (
     <svg

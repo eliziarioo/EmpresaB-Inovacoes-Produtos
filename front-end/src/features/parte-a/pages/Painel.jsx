@@ -15,7 +15,6 @@ import {
 } from '../services/adminService.js'
 import '../parteA.css'
 
-// Como cada estado de OS aparece na tabela: texto, cor do selo e ícone.
 const ESTADOS = {
   aguardando_aprovacao: {
     texto: 'Aguardando aprovação',
@@ -56,7 +55,6 @@ function formatarPrazo(iso) {
   return `${dia}/${mes}`
 }
 
-// "2026-10-16" vira "Sexta, 16 de outubro".
 function formatarDia(iso) {
   const data = new Date(`${iso}T12:00:00`)
   const diaDaSemana = new Intl.DateTimeFormat('pt-BR', { weekday: 'long' })
@@ -93,7 +91,6 @@ function Painel() {
         if (ativo) setErro(falha.message)
       })
 
-    // Se a tela fechar antes da resposta chegar, ignoramos o resultado.
     return () => {
       ativo = false
     }

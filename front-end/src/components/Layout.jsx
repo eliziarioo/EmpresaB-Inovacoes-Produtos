@@ -16,7 +16,6 @@ function Layout() {
     <>
       <header className="topo">
         <div className="topo-marca">
-          {/* Espaço reservado: trocar pelo arquivo do logo quando o design enviar */}
           <span className="topo-logo" aria-hidden="true">
             iA
           </span>

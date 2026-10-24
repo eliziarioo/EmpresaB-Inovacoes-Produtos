@@ -55,13 +55,13 @@ export default function ModalAprovacao({
         aria-labelledby="titulo-modal-aprovacao"
       >
         <h2 id="titulo-modal-aprovacao">
-          Confirmar aprovação
+          Confirmar a equipe A para a {ordem.id}?
         </h2>
 
         <p>
-          Deseja realmente aprovar a equipe
-          recomendada para a ordem
-          <strong> {ordem.id}</strong>?
+          Carlos, Ana e Paulo serão notificados no aplicativo.
+          A OS-2493 volta para replanejamento.
+          O dossiê de conformidade será gerado.
         </p>
 
         {erro && (

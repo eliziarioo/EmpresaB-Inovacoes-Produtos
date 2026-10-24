@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
+import logo from '../../../assets/logo.svg'
 import { useAuth } from '../../../context/useAuth.js'
 import '../parteA.css'
 
@@ -61,9 +62,7 @@ function Login() {
     <div className="login">
       <section className="login-lado">
         <div className="login-marca">
-          <span className="login-logo" aria-hidden="true">
-            iA
-          </span>
+          <img src={logo} alt="" className="login-logo" />
           <span>INTELLIGENT TEAM</span>
         </div>
 

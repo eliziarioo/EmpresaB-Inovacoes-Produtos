@@ -15,15 +15,9 @@
 }
 
 .topo-logo {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: var(--laranja);
-  color: var(--superficie);
-  font-weight: 700;
-  font-size: 14px;
+  display: block;
+  width: auto;
+  height: 40px;
 }
 
 .topo-nome {

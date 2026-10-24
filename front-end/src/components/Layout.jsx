@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom'
+import logo from '../assets/logo.svg'
 import { useAuth } from '../context/useAuth.js'
 import './Layout.css'
 
@@ -16,9 +17,7 @@ function Layout() {
     <>
       <header className="topo">
         <div className="topo-marca">
-          <span className="topo-logo" aria-hidden="true">
-            iA
-          </span>
+          <img src={logo} alt="" className="topo-logo" />
           <span className="topo-nome">INTELLIGENT TEAM</span>
         </div>
 

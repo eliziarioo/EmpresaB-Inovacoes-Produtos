@@ -72,7 +72,8 @@ const DOCUMENTOS_EXEMPLO = [
 ]
 
 export async function buscarDocumentos() {
-  if (USAR_MOCK) return DOCUMENTOS_EXEMPLO
+  // Devolve uma cópia: a tela guarda a lista no estado e não pode dividir o array.
+  if (USAR_MOCK) return [...DOCUMENTOS_EXEMPLO]
   return chamarApi('/documentos')
 }
 
@@ -102,12 +103,52 @@ export async function buscarUsuarios() {
   return chamarApi('/usuarios')
 }
 
+function registrarAuditoria(ator, acao, documento) {
+  const agora = new Date()
+  const dois = (numero) => String(numero).padStart(2, '0')
+  AUDITORIA_EXEMPLO.push({
+    id: `aud-${String(AUDITORIA_EXEMPLO.length + 1).padStart(3, '0')}`,
+    data_hora: `${agora.getFullYear()}-${dois(agora.getMonth() + 1)}-${dois(agora.getDate())}T${dois(agora.getHours())}:${dois(agora.getMinutes())}:00`,
+    ator,
+    ator_tipo: 'usuario',
+    acao,
+    objeto: documento.codigo,
+    versao: `v${documento.versao}`,
+  })
+}
+
+// Envio simulado: não sobe o arquivo, só cria o documento e registra na auditoria.
+// Com a API pronta, o POST recebe os mesmos campos.
+export async function enviarDocumento(dados, ator) {
+  if (!USAR_MOCK) {
+    return chamarApi('/documentos', { metodo: 'POST', corpo: dados })
+  }
+
+  const documento = {
+    id: `doc-${String(DOCUMENTOS_EXEMPLO.length + 1).padStart(3, '0')}`,
+    codigo: dados.codigo,
+    titulo: dados.titulo,
+    versao: dados.versao,
+    status: dados.status,
+    aprovado_em: dados.status === 'aprovado' ? dados.data_aprovacao : null,
+    aplica_se_a: dados.aplica_se_a,
+    arquivo_url: null,
+  }
+  DOCUMENTOS_EXEMPLO.push(documento)
+
+  registrarAuditoria(ator, 'enviou', documento)
+  if (documento.status === 'aprovado') {
+    registrarAuditoria(ator, 'aprovou', documento)
+  }
+  return documento
+}
+
 // Mais recente primeiro, como a API vai devolver.
 export async function buscarAuditoria() {
   if (USAR_MOCK) {
-    return [...AUDITORIA_EXEMPLO].sort((a, b) =>
-      b.data_hora.localeCompare(a.data_hora),
-    )
+    return [...AUDITORIA_EXEMPLO]
+      .sort((a, b) => b.data_hora.localeCompare(a.data_hora))
+      .slice(0, 4)
   }
   return chamarApi('/auditoria?limite=4')
 }

@@ -84,3 +84,20 @@ export function IconeQuadrado({ tamanho }) {
     </Icone>
   )
 }
+
+export function IconeArquivo({ tamanho }) {
+  return (
+    <Icone tamanho={tamanho}>
+      <path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z" />
+      <path d="M14 3v5h5" />
+    </Icone>
+  )
+}
+
+export function IconeFechar({ tamanho }) {
+  return (
+    <Icone tamanho={tamanho}>
+      <path d="M6 6l12 12M18 6L6 18" />
+    </Icone>
+  )
+}

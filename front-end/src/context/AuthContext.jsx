@@ -1,12 +1,11 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { definirAoExpirar } from '../services/api.js'
 import {
   entrar as entrarNaApi,
   lerPerfilGuardado,
   sair as sairDaApi,
 } from '../features/parte-a/services/authService.js'
-
-const AuthContext = createContext(null)
+import { AuthContext } from './useAuth.js'
 
 export function AuthProvider({ children }) {
   const [perfil, setPerfil] = useState(lerPerfilGuardado)
@@ -32,8 +31,4 @@ export function AuthProvider({ children }) {
       {children}
     </AuthContext.Provider>
   )
-}
-
-export function useAuth() {
-  return useContext(AuthContext)
 }

@@ -1,5 +1,5 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext.jsx'
+import { useAuth } from '../context/useAuth.js'
 
 // Sem login vai para /login; com login mas perfil errado, volta à tela do perfil.
 function RotaProtegida({ perfis }) {

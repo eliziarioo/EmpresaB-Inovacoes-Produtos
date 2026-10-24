@@ -9,7 +9,8 @@ function formatarDataHora(iso) {
   return `${dia}/${mes} · ${hora.slice(0, 5)}`
 }
 
-function Auditoria() {
+// "atualizacao" muda quando algo novo é registrado, e a lista é buscada de novo.
+function Auditoria({ atualizacao }) {
   const [registros, setRegistros] = useState([])
   const [erro, setErro] = useState('')
 
@@ -27,7 +28,7 @@ function Auditoria() {
     return () => {
       ativo = false
     }
-  }, [])
+  }, [atualizacao])
 
   return (
     <section className="cartao">

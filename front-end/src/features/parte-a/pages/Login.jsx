@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
-import { useAuth } from '../../../context/AuthContext.jsx'
+import { useAuth } from '../../../context/useAuth.js'
 import '../parteA.css'
 
 const DESTAQUES = [

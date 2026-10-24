@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { IconeCheck, IconeLapis, IconeQuadrado } from '../components/Icones.jsx'
 import Auditoria from './Auditoria.jsx'
+import EnviarDocumento from './EnviarDocumento.jsx'
 import Usuarios from './Usuarios.jsx'
 import {
   abrirArquivoDoDocumento,
@@ -26,6 +27,10 @@ function Documentos() {
   const [documentos, setDocumentos] = useState([])
   const [carregando, setCarregando] = useState(true)
   const [erro, setErro] = useState('')
+  const [janelaAberta, setJanelaAberta] = useState(false)
+  const [aviso, setAviso] = useState('')
+  // Muda a cada envio, para a Auditoria buscar a lista de novo.
+  const [envios, setEnvios] = useState(0)
 
   useEffect(() => {
     let ativo = true
@@ -55,6 +60,13 @@ function Documentos() {
     }
   }
 
+  function aoEnviarDocumento(documento) {
+    setDocumentos((atuais) => [...atuais, documento])
+    setEnvios((atual) => atual + 1)
+    setJanelaAberta(false)
+    setAviso(`Documento ${documento.codigo} enviado (simulado).`)
+  }
+
   return (
     <>
       <div className="pagina-cabecalho">
@@ -65,10 +77,23 @@ function Documentos() {
             de alterações. Só documentos aprovados chegam ao técnico.
           </p>
         </div>
-        <button type="button" className="botao-principal botao-auto">
+        <button
+          type="button"
+          className="botao-principal botao-auto"
+          onClick={() => {
+            setAviso('')
+            setJanelaAberta(true)
+          }}
+        >
           + Enviar documento
         </button>
       </div>
+
+      {aviso && (
+        <p className="aviso-sucesso" role="status">
+          {aviso}
+        </p>
+      )}
 
       {erro && (
         <p className="login-erro" role="alert">
@@ -142,8 +167,15 @@ function Documentos() {
 
       <div className="documentos-baixo">
         <Usuarios />
-        <Auditoria />
+        <Auditoria atualizacao={envios} />
       </div>
+
+      {janelaAberta && (
+        <EnviarDocumento
+          aoFechar={() => setJanelaAberta(false)}
+          aoEnviar={aoEnviarDocumento}
+        />
+      )}
     </>
   )
 }

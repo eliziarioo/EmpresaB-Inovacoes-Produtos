@@ -93,6 +93,43 @@ export function IconeArquivo({ tamanho }) {
   )
 }
 
+export function IconeEnvelope({ tamanho }) {
+  return (
+    <Icone tamanho={tamanho}>
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="M3.5 7l8.5 6 8.5-6" />
+    </Icone>
+  )
+}
+
+export function IconeCadeado({ tamanho }) {
+  return (
+    <Icone tamanho={tamanho}>
+      <rect x="5" y="11" width="14" height="9" rx="2" />
+      <path d="M8 11V8a4 4 0 018 0v3" />
+    </Icone>
+  )
+}
+
+export function IconeOlho({ tamanho }) {
+  return (
+    <Icone tamanho={tamanho}>
+      <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" />
+      <circle cx="12" cy="12" r="3" />
+    </Icone>
+  )
+}
+
+export function IconeOlhoRiscado({ tamanho }) {
+  return (
+    <Icone tamanho={tamanho}>
+      <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" />
+      <circle cx="12" cy="12" r="3" />
+      <path d="M4 4l16 16" />
+    </Icone>
+  )
+}
+
 export function IconeFechar({ tamanho }) {
   return (
     <Icone tamanho={tamanho}>

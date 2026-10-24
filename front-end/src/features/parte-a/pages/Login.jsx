@@ -2,6 +2,12 @@ import { useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 import logo from '../../../assets/logo.svg'
 import { useAuth } from '../../../context/useAuth.js'
+import {
+  IconeCadeado,
+  IconeEnvelope,
+  IconeOlho,
+  IconeOlhoRiscado,
+} from '../components/Icones.jsx'
 import '../parteA.css'
 
 const DESTAQUES = [
@@ -63,7 +69,9 @@ function Login() {
       <section className="login-lado">
         <div className="login-marca">
           <img src={logo} alt="" className="login-logo" />
-          <span>INTELLIGENT TEAM</span>
+          <span>
+            INTELLIGENT <span className="destaque-laranja">TEAM</span>
+          </span>
         </div>
 
         <div className="login-texto">
@@ -111,19 +119,27 @@ function Login() {
 
           <label className="campo">
             <span>E-mail corporativo</span>
-            <input
-              type="text"
-              autoComplete="username"
-              placeholder={PERFIS.find((p) => p.tipo === tipo).exemplo}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+            <div className="campo-icone">
+              <span className="campo-icone-esquerda">
+                <IconeEnvelope tamanho={20} />
+              </span>
+              <input
+                type="text"
+                autoComplete="username"
+                placeholder={PERFIS.find((p) => p.tipo === tipo).exemplo}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
           </label>
 
           <label className="campo">
             <span>Senha</span>
-            <div className="campo-senha">
+            <div className="campo-icone">
+              <span className="campo-icone-esquerda">
+                <IconeCadeado tamanho={20} />
+              </span>
               <input
                 type={mostrarSenha ? 'text' : 'password'}
                 autoComplete="current-password"
@@ -137,7 +153,11 @@ function Login() {
                 onClick={() => setMostrarSenha(!mostrarSenha)}
                 aria-label={mostrarSenha ? 'Ocultar senha' : 'Mostrar senha'}
               >
-                {mostrarSenha ? 'Ocultar' : 'Mostrar'}
+                {mostrarSenha ? (
+                  <IconeOlhoRiscado tamanho={20} />
+                ) : (
+                  <IconeOlho tamanho={20} />
+                )}
               </button>
             </div>
           </label>

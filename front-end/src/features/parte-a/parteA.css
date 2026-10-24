@@ -53,25 +53,37 @@
   outline-offset: -1px;
 }
 
-.campo-senha {
+.campo-icone {
   position: relative;
 }
 
-.campo-senha input {
+.campo-icone input {
   width: 100%;
-  padding-right: 80px;
+  padding-left: 46px;
+  padding-right: 48px;
+}
+
+.campo-icone-esquerda {
+  position: absolute;
+  top: 0;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  color: var(--texto-2);
 }
 
 .campo-olho {
   position: absolute;
   top: 0;
-  right: 6px;
+  right: 8px;
+  display: flex;
+  align-items: center;
   height: 100%;
   padding: 0 8px;
   border: 0;
   background: none;
-  color: var(--texto-suave);
-  font-size: 13px;
+  color: var(--texto-2);
 }
 
 .login {

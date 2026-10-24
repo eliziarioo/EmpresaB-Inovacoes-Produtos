@@ -68,3 +68,7 @@ button {
 a {
   color: inherit;
 }
+
+.destaque-laranja {
+  color: var(--laranja);
+}

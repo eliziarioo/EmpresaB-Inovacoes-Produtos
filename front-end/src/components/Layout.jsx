@@ -18,7 +18,9 @@ function Layout() {
       <header className="topo">
         <div className="topo-marca">
           <img src={logo} alt="" className="topo-logo" />
-          <span className="topo-nome">INTELLIGENT TEAM</span>
+          <span className="topo-nome">
+            INTELLIGENT <span className="destaque-laranja">TEAM</span>
+          </span>
         </div>
 
         <nav className="topo-abas" aria-label="Principal">

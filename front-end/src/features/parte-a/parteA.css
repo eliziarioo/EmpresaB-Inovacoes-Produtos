@@ -1,0 +1,252 @@
+/* ---------- Cabeçalho de página (usado em Painel, Documentos...) ---------- */
+.pagina-titulo {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.pagina-apoio {
+  margin-top: 4px;
+  color: var(--texto-suave);
+}
+
+/* ---------- Botões e links ---------- */
+.botao-principal {
+  height: 48px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--laranja);
+  color: var(--superficie);
+  font-weight: 600;
+}
+
+.botao-principal:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--laranja-escuro);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* ---------- Campos de formulário ---------- */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.campo input {
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--borda-campo);
+  border-radius: 8px;
+  background: var(--superficie);
+  font-weight: 400;
+}
+
+.campo input:focus {
+  outline: 2px solid var(--laranja);
+  outline-offset: -1px;
+}
+
+.campo-senha {
+  position: relative;
+}
+
+.campo-senha input {
+  width: 100%;
+  padding-right: 80px;
+}
+
+.campo-olho {
+  position: absolute;
+  top: 0;
+  right: 6px;
+  height: 100%;
+  padding: 0 8px;
+  border: 0;
+  background: none;
+  color: var(--texto-suave);
+  font-size: 13px;
+}
+
+/* ---------- Login ---------- */
+.login {
+  display: grid;
+  grid-template-columns: 44fr 56fr;
+  min-height: 100vh;
+}
+
+.login-lado {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 56px;
+  background: var(--escuro);
+  color: var(--superficie);
+}
+
+.login-marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+}
+
+.login-logo {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--laranja);
+  font-size: 14px;
+}
+
+.login-texto h1 {
+  max-width: 440px;
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.login-texto ul {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 32px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.login-texto li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.login-check {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--laranja);
+}
+
+.login-rodape {
+  color: #a9b2ad;
+  font-size: 14px;
+}
+
+.login-area {
+  display: grid;
+  place-items: center;
+  padding: 32px;
+}
+
+.login-cartao {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  max-width: 440px;
+  padding: 36px;
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  background: var(--superficie);
+}
+
+.login-cartao h2 {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.login-linha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.login-lembrar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+}
+
+.login-lembrar input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--laranja);
+}
+
+.login-aviso {
+  color: var(--texto-suave);
+  font-size: 14px;
+}
+
+.login-erro {
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--bloqueio-suave);
+  color: var(--bloqueio);
+  font-size: 14px;
+}
+
+/* "Entrar como..." (escolha do perfil) */
+.login-perfis {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.login-perfis-titulo {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.login-perfis-opcoes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.login-perfil {
+  height: 44px;
+  border: 1px solid var(--borda-campo);
+  border-radius: 8px;
+  background: var(--superficie);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--texto-2);
+}
+
+.login-perfil:hover {
+  background: var(--superficie-suave);
+}
+
+.login-perfil-ativo,
+.login-perfil-ativo:hover {
+  border-color: var(--laranja);
+  background: var(--atencao-suave);
+  color: var(--laranja-escuro);
+}
+
+@media (max-width: 800px) {
+  .login {
+    grid-template-columns: 1fr;
+  }
+
+  .login-lado {
+    gap: 32px;
+    padding: 32px;
+  }
+}

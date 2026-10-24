@@ -11,9 +11,9 @@ const DESTAQUES = [
 ]
 
 const PERFIS = [
-  { tipo: 'gestor', rotulo: 'Gestor', exemplo: 'marina@empresa.com.br' },
-  { tipo: 'tecnico', rotulo: 'Técnico', exemplo: 'paulo@empresa.com.br' },
-  { tipo: 'administrador', rotulo: 'Administrador', exemplo: 'ricardo@empresa.com.br' },
+  { tipo: 'gestor', rotulo: 'Gestor', exemplo: 'marina.costa@empresa.com.br' },
+  { tipo: 'tecnico', rotulo: 'Técnico', exemplo: 'paulo.souza@empresa.com.br' },
+  { tipo: 'administrador', rotulo: 'Administrador', exemplo: 'ricardo.alves@empresa.com.br' },
 ]
 
 function IconeCheck() {

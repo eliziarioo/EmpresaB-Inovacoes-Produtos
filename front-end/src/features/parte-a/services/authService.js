@@ -34,7 +34,7 @@ export function lerPerfilGuardado() {
 }
 
 export async function entrar(email, senha, lembrar, tipoEsperado) {
-  const usuario = email.trim().split('@')[0].toLowerCase()
+  const usuario = email.trim().split('@')[0].split('.')[0].toLowerCase()
   const ehAdmin = usuario === ADMIN_DEMO.usuario
 
   if (ehAdmin && senha !== ADMIN_DEMO.senha) {

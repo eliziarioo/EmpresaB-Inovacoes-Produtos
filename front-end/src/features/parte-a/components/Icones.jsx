@@ -68,3 +68,19 @@ export function IconePlay({ tamanho }) {
     </Icone>
   )
 }
+
+export function IconeLapis({ tamanho }) {
+  return (
+    <Icone tamanho={tamanho}>
+      <path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 013 3L8 19z" />
+    </Icone>
+  )
+}
+
+export function IconeQuadrado({ tamanho }) {
+  return (
+    <Icone tamanho={tamanho}>
+      <rect x="5" y="5" width="14" height="14" rx="2" />
+    </Icone>
+  )
+}

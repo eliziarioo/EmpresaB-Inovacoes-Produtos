@@ -4,7 +4,6 @@ from rest_framework.decorators import api_view
 from rest_framework.exceptions import APIException, NotFound, ValidationError
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.exceptions import NotFound, ValidationError
 from . import permissoes, regras
 
 from .dados import carregar_dados, obter_estado, reiniciar_estado
@@ -260,22 +259,6 @@ def servicos_do_profissional(request, id_profissional):
 
     incluir_indicados = request.query_params.get("incluir_indicados") == "true"
     return Response(regras.montar_servicos_do_profissional(profissional, incluir_indicados))
-
-@api_view(["GET"])
-def listar_perfis(request):
-    return Response(carregar_dados("perfis.json"))
-
-
-@api_view(["POST"])
-def entrar(request):
-    id_perfil = request.data.get("perfil")
-    perfis = carregar_dados("perfis.json")
-    perfil = next((p for p in perfis if p["id"] == id_perfil), None)
-    if perfil is None:
-        validos = ", ".join(p["id"] for p in perfis)
-        raise ValidationError({"perfil": f"Perfil não encontrado. Use um destes: {validos}."})
-
-    return Response({"perfil": perfil, "mensagem": f"Você entrou como {perfil['nome']}."})
 
 @api_view(["GET"])
 def listar_perfis(request):

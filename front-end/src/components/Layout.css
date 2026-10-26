@@ -4,8 +4,8 @@
   gap: 28px;
   height: 75px;
   padding: 0 32px;
-  background: var(--escuro);
-  color: var(--superficie);
+  background: #16201f;
+  color: #ffffff;
 }
 
 .topo-marca {
@@ -33,17 +33,17 @@
 
 .topo-aba {
   padding: 9px 14px;
-  color: var(--superficie);
+  color: #ffffff;
   font-size: 15px;
   text-decoration: none;
 }
 
 .topo-aba:hover {
-  color: var(--laranja);
+  color: #ec4e00;
 }
 
 .topo-aba-ativa {
-  color: var(--laranja);
+  color: #ec4e00;
 }
 
 .topo-usuario {
@@ -59,8 +59,8 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: var(--superficie);
-  color: var(--laranja);
+  background: #ffffff;
+  color: #ec4e00;
   font-weight: 700;
   font-size: 13px;
 }
@@ -70,11 +70,11 @@
   flex-direction: column;
   line-height: 1.25;
   font-size: 14px;
-  color: var(--superficie);
+  color: #ffffff;
 }
 
 .topo-dados strong {
-  color: var(--laranja);
+  color: #ec4e00;
   font-weight: 600;
 }
 
@@ -83,7 +83,7 @@
   border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 8px;
   background: none;
-  color: var(--superficie);
+  color: #ffffff;
   font-size: 13px;
 }
 

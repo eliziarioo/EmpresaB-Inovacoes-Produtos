@@ -2,19 +2,6 @@ import { chamarApi, guardarToken, limparToken } from '../../../services/api.js'
 
 const CHAVE_PERFIL = 'it_perfil'
 
-const ADMIN_DEMO = {
-  usuario: 'ricardo',
-  senha: 'admin123',
-  perfil: {
-    id: 'administrador',
-    tipo: 'administrador',
-    nome: 'Ricardo Alves',
-    cargo: 'Administrador',
-    iniciais: 'RA',
-    tela_inicial: '/painel',
-  },
-}
-
 function guardarPerfil(perfil, lembrar) {
   const destino = lembrar ? localStorage : sessionStorage
   localStorage.removeItem(CHAVE_PERFIL)
@@ -35,28 +22,19 @@ export function lerPerfilGuardado() {
 
 export async function entrar(email, senha, lembrar, tipoEsperado) {
   const usuario = email.trim().split('@')[0].split('.')[0].toLowerCase()
-  const ehAdmin = usuario === ADMIN_DEMO.usuario
-
-  if (ehAdmin && senha !== ADMIN_DEMO.senha) {
-    throw new Error('Usuário ou senha incorretos.')
-  }
 
   const dados = await chamarApi('/entrar', {
     metodo: 'POST',
-    corpo: ehAdmin
-      ? { usuario: 'marina', senha: 'gestor123' }
-      : { usuario, senha },
+    corpo: { usuario, senha },
   })
 
-  const perfil = ehAdmin ? ADMIN_DEMO.perfil : dados.perfil
-
-  if (tipoEsperado && perfil.tipo !== tipoEsperado) {
+  if (tipoEsperado && dados.perfil.tipo !== tipoEsperado) {
     throw new Error('Este usuário não tem o perfil selecionado.')
   }
 
   guardarToken(dados.token, lembrar)
-  guardarPerfil(perfil, lembrar)
-  return perfil
+  guardarPerfil(dados.perfil, lembrar)
+  return dados.perfil
 }
 
 export async function sair() {

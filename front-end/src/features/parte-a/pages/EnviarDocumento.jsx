@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import { useAuth } from '../../../context/useAuth.js'
 import { IconeArquivo, IconeFechar } from '../components/Icones.jsx'
 import { enviarDocumento } from '../services/adminService.js'
 import '../parteA.css'
@@ -23,7 +22,6 @@ function formatarTamanho(bytes) {
 }
 
 function EnviarDocumento({ aoFechar, aoEnviar }) {
-  const { perfil } = useAuth()
   const seletorDeArquivo = useRef(null)
 
   const [arquivo, setArquivo] = useState(null)
@@ -55,12 +53,6 @@ function EnviarDocumento({ aoFechar, aoEnviar }) {
     }
     setErro('')
     setArquivo(escolhido)
-
-    const [sugestaoCodigo, sugestaoVersao] = escolhido.name
-      .replace(/\.pdf$/i, '')
-      .split('_')
-    if (!codigo && sugestaoCodigo) setCodigo(sugestaoCodigo)
-    if (!versao && sugestaoVersao) setVersao(sugestaoVersao.replace(/^v/i, ''))
   }
 
   function adicionarItem() {
@@ -89,24 +81,18 @@ function EnviarDocumento({ aoFechar, aoEnviar }) {
     if (!codigo.trim() || !versao.trim() || !titulo.trim()) {
       return setErro('Preencha código, versão e título.')
     }
-    if (status === 'aprovado' && !dataAprovacao) {
-      return setErro('Informe a data de aprovação para um documento aprovado.')
-    }
 
     setErro('')
     setEnviando(true)
     try {
-      const documento = await enviarDocumento(
-        {
-          codigo: codigo.trim(),
-          versao: versao.trim(),
-          titulo: titulo.trim(),
-          data_aprovacao: dataAprovacao || null,
-          aplica_se_a: aplicaSeA,
-          status,
-        },
-        perfil.nome.split(' ')[0],
-      )
+      const documento = await enviarDocumento({
+        codigo: codigo.trim(),
+        versao: versao.trim(),
+        titulo: titulo.trim(),
+        data_aprovacao: dataAprovacao || null,
+        aplica_se_a: aplicaSeA,
+        status,
+      })
       aoEnviar(documento)
     } catch (falha) {
       setErro(falha.message)

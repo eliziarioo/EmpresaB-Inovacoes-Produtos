@@ -24,6 +24,15 @@ export function definirAoExpirar(funcao) {
   aoExpirar = funcao
 }
 
+// A API responde {"detail": "..."} ou, nos erros de campo, {"campo": ["mensagem"]}.
+function extrairMensagem(dados) {
+  if (dados.detail) return dados.detail
+  const textos = Object.values(dados)
+    .flat()
+    .filter((texto) => typeof texto === 'string')
+  return textos.length ? textos.join(' ') : 'Algo deu errado. Tente de novo.'
+}
+
 export async function chamarApi(caminho, opcoes = {}) {
   const { metodo = 'GET', corpo, tipo = 'json' } = opcoes
   const token = lerToken()
@@ -50,7 +59,7 @@ export async function chamarApi(caminho, opcoes = {}) {
 
   if (!resposta.ok) {
     const dados = await resposta.json().catch(() => ({}))
-    throw new Error(dados.detail || 'Algo deu errado. Tente de novo.')
+    throw new Error(extrairMensagem(dados))
   }
 
   return tipo === 'blob' ? resposta.blob() : resposta.json()

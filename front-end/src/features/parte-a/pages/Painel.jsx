@@ -5,6 +5,7 @@ import {
   IconeBloqueio,
   IconeCheck,
   IconeCheckCirculo,
+  IconeLapis,
   IconePlay,
   IconeRelogio,
 } from '../components/Icones.jsx'
@@ -16,6 +17,16 @@ import {
 import '../parteA.css'
 
 const ESTADOS = {
+  rascunho: {
+    texto: 'Rascunho',
+    classe: 'selo-neutro',
+    Icone: IconeLapis,
+  },
+  replanejamento: {
+    texto: 'Replanejamento',
+    classe: 'selo-atencao',
+    Icone: IconeAlerta,
+  },
   aguardando_aprovacao: {
     texto: 'Aguardando aprovação',
     classe: 'selo-atencao',
@@ -107,7 +118,6 @@ function Painel() {
   if (!painel) return <p className="pagina-apoio">Carregando painel...</p>
 
   const { contadores } = painel
-  const precisamAtencao = contadores.aguardando_aprovacao
   const disponiveis = contadores.profissionais_disponiveis
 
   return (
@@ -115,13 +125,7 @@ function Painel() {
       <div className="pagina-cabecalho">
         <div>
           <h1 className="pagina-titulo">Painel de operações</h1>
-          <p className="pagina-apoio">
-            {formatarDia(painel.data_referencia)} · {precisamAtencao}{' '}
-            {precisamAtencao === 1
-              ? 'ordem de serviço precisa'
-              : 'ordens de serviço precisam'}{' '}
-            da sua atenção
-          </p>
+          <p className="pagina-apoio">{formatarDia(painel.data_referencia)}</p>
         </div>
         <Link to="/ordens" className="botao-principal botao-auto">
           + Nova ordem de serviço

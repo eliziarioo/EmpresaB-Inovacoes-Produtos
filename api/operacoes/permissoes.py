@@ -7,18 +7,18 @@ from django.http import JsonResponse
 
 from .dados import carregar_dados
 
-
-# Sessões abertas: token -> perfil (sem a senha). Ficam só na memória do servidor.
 SESSOES = {}
 
-# Rotas liberadas mesmo sem login.
 ROTAS_PUBLICAS = [
     r"^/entrar$",
     r"^/perfis$",
 ]
 
-# Rotas que o técnico NÃO pode usar (só o gestor).
+PERFIS_DE_GESTAO = ("gestor", "administrador")
+
 ROTAS_SOMENTE_GESTOR = [
+    r"^/usuarios$",
+    r"^/auditoria$",
     r"^/ordens$",
     r"^/ordens/[^/]+$",
     r"^/ordens/[^/]+/(interpretacao|equipes|equipes/buscar|equipe|equipe/aprovar|dossie)$",
@@ -64,7 +64,8 @@ class ControlePorPerfil:
     Login de demonstração: POST /entrar (usuário e senha) devolve um token, e o
     front manda esse token em toda chamada (Authorization: Bearer <token>).
 
-    A API descobre o perfil pelo token e bloqueia, para o técnico, as rotas do gestor.
+    A API descobre o perfil pelo token e bloqueia, para o técnico, as rotas da gestão.
+    Gestor e administrador têm o mesmo acesso às rotas; o técnico só vê os documentos aprovados.
     As contas são fictícias (dados/perfis.json): não é segurança de produção.
     """
 
@@ -98,12 +99,15 @@ class ControlePorPerfil:
                 return JsonResponse({"detail": "Faça login em /entrar e envie o token no cabeçalho Authorization."}, status=401)
             return None
 
-        if perfil["tipo"] == "gestor":
+        if perfil["tipo"] in PERFIS_DE_GESTAO:
             return None
 
         for padrao in ROTAS_SOMENTE_GESTOR:
             if re.match(padrao, request.path):
                 return JsonResponse({"detail": "Este perfil não tem acesso a esta área (só o gestor)."}, status=403)
+
+        if request.method == "POST" and request.path == "/documentos":
+            return JsonResponse({"detail": "Este perfil não pode enviar documentos (só gestor ou administrador)."}, status=403)
 
         servicos = re.match(ROTA_DE_SERVICOS_DO_TECNICO, request.path)
         if servicos and servicos.group(1) != perfil["profissional_id"]:

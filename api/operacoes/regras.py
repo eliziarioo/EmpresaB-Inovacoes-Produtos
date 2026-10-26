@@ -1,7 +1,7 @@
 import re
 import unicodedata
 from collections import Counter
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 from itertools import combinations, product
 
 from .dados import carregar_dados, obter_estado
@@ -1193,7 +1193,6 @@ def responder_pergunta(pergunta, ordem):
             escolhida = candidata
             break
 
-    # Só responde com documento autorizado para esta ordem
     if escolhida and escolhida["tipo"] == "resposta":
         documento = achar_documento(escolhida["citacao"]["documento_id"])
         if documento and documento["id"] in autorizados:
@@ -1229,3 +1228,109 @@ def responder_pergunta(pergunta, ordem):
         "aviso": chat["aviso"],
         "escalar_para": achar_responsavel_pela_inspecao(ordem),
     }
+
+
+# ---------------------------------------------------------------------------
+# Administração: documentos da empresa, usuários e auditoria
+# O envio de documento é simulado: fica só na memória e não muda as respostas do assistente
+# (o assistente continua lendo documentos.json).
+# ---------------------------------------------------------------------------
+
+STATUS_NO_ENVIO_DE_DOCUMENTO = ("rascunho", "aprovado")
+
+
+class DocumentoInvalido(Exception):
+    def __init__(self, erros):
+        super().__init__("Documento inválido.")
+        self.erros = erros
+
+
+def listar_documentos_visiveis(perfil):
+    documentos = obter_estado()["documentos"]
+    if perfil is not None and perfil["tipo"] == "tecnico":
+        return [d for d in documentos if d["status"] == "aprovado"]
+    return documentos
+
+
+def listar_usuarios():
+    return obter_estado()["usuarios"]
+
+
+def registrar_auditoria(ator, acao, objeto, versao, ator_tipo="usuario"):
+    auditoria = obter_estado()["auditoria"]
+    auditoria.append({
+        "id": f"aud-{len(auditoria) + 1:03d}",
+        "data_hora": datetime.now().replace(microsecond=0).isoformat(),
+        "ator": ator,
+        "ator_tipo": ator_tipo,
+        "acao": acao,
+        "objeto": objeto,
+        "versao": f"v{versao}",
+    })
+
+
+def listar_auditoria(limite=None):
+    eventos = sorted(obter_estado()["auditoria"], key=lambda e: (e["data_hora"], e["id"]), reverse=True)
+    return eventos[:limite] if limite else eventos
+
+
+def cadastrar_documento(dados, ator):
+    codigo = str(dados.get("codigo") or "").strip()
+    versao = str(dados.get("versao") or "").strip()
+    titulo = str(dados.get("titulo") or "").strip()
+    status = dados.get("status") or "rascunho"
+    data_aprovacao = dados.get("data_aprovacao")
+    aplica_se_a = dados.get("aplica_se_a") or []
+
+    erros = {}
+    if not codigo:
+        erros["codigo"] = "Informe o código do documento."
+    if not versao:
+        erros["versao"] = "Informe a versão."
+    if not titulo:
+        erros["titulo"] = "Informe o título."
+    if status not in STATUS_NO_ENVIO_DE_DOCUMENTO:
+        erros["status"] = "Use 'rascunho' ou 'aprovado'."
+    if not isinstance(aplica_se_a, list):
+        erros["aplica_se_a"] = "Envie uma lista de equipamentos ou tipos de OS."
+    if status == "aprovado" and data_aprovacao:
+        try:
+            date.fromisoformat(str(data_aprovacao))
+        except ValueError:
+            erros["data_aprovacao"] = "Use a data no formato AAAA-MM-DD."
+    if erros:
+        raise DocumentoInvalido(erros)
+
+    documentos = obter_estado()["documentos"]
+    for existente in documentos:
+        if existente["codigo"].lower() == codigo.lower() and existente["versao"] == versao:
+            raise LookupError(f"Já existe o documento {codigo} na versão {versao}.")
+
+    if status == "aprovado":
+        aprovado_em = str(data_aprovacao) if data_aprovacao else data_de_referencia().isoformat()
+        data_br = date.fromisoformat(aprovado_em).strftime("%d/%m/%Y")
+        descricao_curta = f"Versão {versao} · aprovado em {data_br}"
+    else:
+        aprovado_em = None
+        descricao_curta = f"Versão {versao} · rascunho"
+
+    numeros = [int(d["id"].split("-")[1]) for d in documentos]
+    documento = {
+        "id": f"doc-{max(numeros, default=0) + 1:03d}",
+        "codigo": codigo,
+        "titulo": titulo,
+        "titulo_completo": titulo,
+        "tipo": None,
+        "versao": versao,
+        "status": status,
+        "aprovado_em": aprovado_em,
+        "aplica_se_a": [str(item).strip() for item in aplica_se_a if str(item).strip()],
+        "descricao_curta": descricao_curta,
+        "arquivo": None,
+    }
+    documentos.append(documento)
+
+    registrar_auditoria(ator, "enviou", codigo, versao)
+    if status == "aprovado":
+        registrar_auditoria(ator, "aprovou", codigo, versao)
+    return documento

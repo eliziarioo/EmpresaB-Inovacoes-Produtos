@@ -1,0 +1,30 @@
+[
+  {
+    "id": "usr-001",
+    "nome": "Marina Costa",
+    "email": "marina.costa@empresa.com.br",
+    "perfil": "gestor",
+    "ativo": true
+  },
+  {
+    "id": "usr-002",
+    "nome": "Ricardo Alves",
+    "email": "ricardo.alves@empresa.com.br",
+    "perfil": "administrador",
+    "ativo": true
+  },
+  {
+    "id": "usr-003",
+    "nome": "Paulo Souza",
+    "email": "paulo.souza@empresa.com.br",
+    "perfil": "tecnico",
+    "ativo": true
+  },
+  {
+    "id": "usr-004",
+    "nome": "Lucas Prado",
+    "email": "lucas.prado@empresa.com.br",
+    "perfil": "tecnico",
+    "ativo": false
+  }
+]

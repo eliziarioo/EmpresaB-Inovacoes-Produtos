@@ -18,6 +18,9 @@ def reiniciar_estado():
         "profissionais": carregar_dados("profissionais.json"),
         "equipes_ajustadas": {},
         "notificacoes": [],
+        "documentos": carregar_dados("documentos.json"),
+        "usuarios": carregar_dados("usuarios.json"),
+        "auditoria": carregar_dados("auditoria.json"),
     }
 
 

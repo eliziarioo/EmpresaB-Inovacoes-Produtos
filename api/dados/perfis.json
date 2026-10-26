@@ -20,5 +20,16 @@
     "iniciais": "PS",
     "profissional_id": "pro-003",
     "tela_inicial": "/profissionais/pro-003/servicos"
+  },
+  {
+    "id": "administrador",
+    "tipo": "administrador",
+    "usuario": "ricardo",
+    "senha": "admin123",
+    "nome": "Ricardo Alves",
+    "cargo": "Administrador",
+    "iniciais": "RA",
+    "profissional_id": null,
+    "tela_inicial": "/painel"
   }
 ]

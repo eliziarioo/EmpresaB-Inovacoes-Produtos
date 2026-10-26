@@ -1,0 +1,38 @@
+[
+  {
+    "id": "aud-001",
+    "data_hora": "2026-08-12T16:40:00",
+    "ator": "Marina",
+    "ator_tipo": "usuario",
+    "acao": "aprovou",
+    "objeto": "PR-SOL-014",
+    "versao": "v3"
+  },
+  {
+    "id": "aud-002",
+    "data_hora": "2026-08-12T16:41:00",
+    "ator": "Sistema",
+    "ator_tipo": "sistema",
+    "acao": "tornou obsoleto",
+    "objeto": "PR-SOL-014",
+    "versao": "v2"
+  },
+  {
+    "id": "aud-003",
+    "data_hora": "2026-09-20T10:05:00",
+    "ator": "Marina",
+    "ator_tipo": "usuario",
+    "acao": "aprovou",
+    "objeto": "APR-ALT-005",
+    "versao": "v5"
+  },
+  {
+    "id": "aud-004",
+    "data_hora": "2026-10-22T14:32:00",
+    "ator": "Ricardo",
+    "ator_tipo": "usuario",
+    "acao": "enviou",
+    "objeto": "PR-ESP-021",
+    "versao": "v1"
+  }
+]

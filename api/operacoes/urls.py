@@ -18,6 +18,8 @@ urlpatterns = [
     path("ordens/<str:id_ordem>/documentos", views.documentos_da_ordem),
     path("ordens/<str:id_ordem>/dossie", views.dossie_da_ordem),
     path("documentos", views.listar_documentos),
+    path("usuarios", views.listar_usuarios),
+    path("auditoria", views.listar_auditoria),
     path("documentos/<str:id_documento>/arquivo", views.arquivo_do_documento),
     path("profissionais/<str:id_profissional>/servicos", views.servicos_do_profissional),
     path("perfis", views.listar_perfis),

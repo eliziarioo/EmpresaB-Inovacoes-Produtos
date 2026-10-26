@@ -194,13 +194,43 @@ def dossie_da_ordem(request, id_ordem):
 
 def documento_para_resposta(documento):
     resposta = dict(documento)
-    resposta["arquivo_url"] = f"/documentos/{documento['id']}/arquivo"
+    resposta["arquivo_url"] = f"/documentos/{documento['id']}/arquivo" if documento.get("arquivo") else None
     return resposta
 
 
-@api_view(["GET"])
+@api_view(["GET", "POST"])
 def listar_documentos(request):
-    return Response([documento_para_resposta(d) for d in carregar_dados("documentos.json")])
+    if request.method == "POST":
+        return receber_novo_documento(request)
+    perfil = getattr(request, "perfil_logado", None)
+    return Response([documento_para_resposta(d) for d in regras.listar_documentos_visiveis(perfil)])
+
+
+def receber_novo_documento(request):
+    perfil = getattr(request, "perfil_logado", None)
+    ator = perfil["nome"].split()[0] if perfil else "Administrador"
+    try:
+        documento = regras.cadastrar_documento(request.data, ator)
+    except regras.DocumentoInvalido as erro:
+        raise ValidationError(erro.erros)
+    except LookupError as erro:
+        raise Conflito(str(erro))
+    return Response(documento_para_resposta(documento), status=status.HTTP_201_CREATED)
+
+
+@api_view(["GET"])
+def listar_usuarios(request):
+    return Response(regras.listar_usuarios())
+
+
+@api_view(["GET"])
+def listar_auditoria(request):
+    limite = request.query_params.get("limite")
+    if limite is not None:
+        if not limite.isdigit() or int(limite) < 1:
+            raise ValidationError({"limite": "Use um número inteiro maior que zero."})
+        limite = int(limite)
+    return Response(regras.listar_auditoria(limite))
 
 
 @api_view(["GET"])
@@ -215,6 +245,8 @@ def arquivo_do_documento(request, id_documento):
     documento = regras.achar_documento(id_documento)
     if documento is None:
         raise NotFound(f"Documento {id_documento} não encontrado")
+    if not documento.get("arquivo"):
+        raise NotFound(f"O documento {documento['codigo']} não tem arquivo no protótipo")
     caminho = settings.BASE_DIR / "arquivos" / documento["arquivo"]
     if not caminho.exists():
         raise NotFound(f"Arquivo {documento['arquivo']} não encontrado na pasta api/arquivos")

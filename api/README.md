@@ -52,9 +52,11 @@ api/
 │   ├── profissionais.json         profissionais: função, certificações com validade, base, custo, agenda
 │   ├── matriz_habilitacoes.json   regras que transformam a leitura da OS em exigências e em equipe
 │   ├── ordens_de_servico.json     ordens do painel (com a leitura da IA da OS-2481 e da OS-2490)
-│   ├── documentos.json            PR-SOL-014, manual do V-301 e APR
+│   ├── documentos.json            documentos da empresa, com status (aprovado, rascunho, obsoleto) e a que se aplicam
+│   ├── usuarios.json              lista de usuários da tela do administrador (nome, e-mail, perfil, ativo)
+│   ├── auditoria.json             registro inicial de quem enviou, aprovou ou alterou documentos
 │   ├── chat_respostas.json        perguntas sugeridas e respostas prontas, com citação
-│   └── perfis.json                contas de demonstração (gestora e técnico)
+│   └── perfis.json                contas de demonstração (gestora, técnico e administrador)
 └── operacoes/                 o app Django com a lógica
     ├── dados.py                   lê os JSONs e guarda o estado da demo na memória
     ├── regras.py                  toda a lógica de negócio
@@ -85,7 +87,9 @@ Foi construída em blocos, na ordem do fluxo do produto:
    o serviço depois que o gestor aprova a equipe**.
 7. **Chat de procedimentos:** responde com a citação do documento (seção, página, trecho). Se a informação não
    está nos documentos autorizados da ordem, diz que não encontrou e indica a quem perguntar, em vez de inventar.
-8. **Login por perfil:** gestora e técnico, com token. O técnico não acessa as rotas do gestor.
+8. **Login por perfil:** gestora, técnico e administrador, com token. O técnico não acessa as rotas do gestor.
+9. **Administração:** o administrador (e o gestor) lista e envia documentos da empresa, vê os usuários e consulta
+   o registro de auditoria. O envio é simulado: fica na memória e não muda as respostas do assistente.
 
 ## Como o sistema decide
 
@@ -162,7 +166,7 @@ Mesmo com IA de verdade, ela só **lê e propõe**. As regras continuam decidind
 
 ### Dados em memória
 
-Aprovar equipe, ajustar equipe, criar OS e corrigir a leitura **não gravam nos JSONs**: ficam na memória.
+Aprovar equipe, ajustar equipe, criar OS, corrigir a leitura e enviar documento **não gravam nos JSONs**: ficam na memória.
 Para voltar ao início, use `POST /demo/reiniciar` ou reinicie o servidor. O servidor também reinicia sozinho
 **sempre que um arquivo `.py` é salvo** (e isso encerra os logins abertos).
 
@@ -174,15 +178,16 @@ contas são fictícias e ficam em `dados/perfis.json`.
 | Perfil | Usuário | Senha | Vê |
 |---|---|---|---|
 | Gestora (Marina Costa) | `marina` | `gestor123` | tudo |
-| Técnico (Paulo Souza, `pro-003`) | `paulo` | `tecnico123` | documentos, chat e os próprios serviços |
+| Administrador (Ricardo Alves) | `ricardo` | `admin123` | tudo (o mesmo que a gestora) |
+| Técnico (Paulo Souza, `pro-003`) | `paulo` | `tecnico123` | documentos aprovados, chat e os próprios serviços |
 
 Como funciona:
 
 1. `POST /entrar` com `{"usuario": "...", "senha": "..."}` devolve um `token` e o perfil (com `tela_inicial`).
 2. O front manda o token em toda chamada: `Authorization: Bearer <token>`.
 3. A API descobre o perfil pelo token. Para o **técnico**, as rotas do gestor (painel, alertas, ordens, equipes,
-   aprovar, dossiê, lista de profissionais, reiniciar demo) respondem **403**, e os serviços de **outro**
-   técnico também.
+   aprovar, dossiê, lista de profissionais, usuários, auditoria, reiniciar demo) e o envio de documento respondem
+   **403**, e os serviços de **outro** técnico também. O técnico só enxerga documentos com status `aprovado`.
 4. `GET /eu` diz quem está logado. `POST /sair` encerra a sessão.
 
 Por padrão, **quem não manda token acessa tudo** (para testar no navegador). Para exigir login em todas as rotas
@@ -241,17 +246,27 @@ EXIGIR_PERFIL = True
 
 | Método | Rota | O que faz |
 |---|---|---|
-| GET | `/documentos` | Lista de documentos |
+| GET | `/documentos` | Lista de documentos, cada um com `codigo`, `titulo`, `versao`, `status` (`aprovado`, `rascunho` ou `obsoleto`), `aprovado_em` (`AAAA-MM-DD` ou `null`), `aplica_se_a` e `arquivo_url` (`null` quando não há PDF). O técnico recebe só os aprovados |
+| POST | `/documentos` | Enviar documento (simulado, só em memória). Body: `codigo`, `versao`, `titulo`, `status` (`rascunho` ou `aprovado`), `data_aprovacao` (`AAAA-MM-DD`, usa a data de referência se vier vazia num aprovado) e `aplica_se_a` (lista). Devolve **201** com o documento; **400** se faltar campo (o erro diz qual); **409** se já existir o mesmo código e versão. Registra "enviou" (e "aprovou") na auditoria |
 | GET | `/ordens/{id}/documentos` | Documentos autorizados da OS |
 | GET | `/documentos/{id}/arquivo` | PDF do documento ("Abrir documento original") |
 | POST | `/chat` | Body: `ordem_id`, `pergunta`. Responde com citação (documento, versão, seção, página, trecho) ou `tipo: "nao_encontrada"`, indicando a quem perguntar |
 | GET | `/chat/sugestoes` | Perguntas sugeridas |
 
+### Administração
+
+| Método | Rota | O que faz |
+|---|---|---|
+| GET | `/usuarios` | Lista de usuários: `id`, `nome`, `email`, `perfil` (`gestor`, `administrador` ou `tecnico`) e `ativo` |
+| GET | `/auditoria?limite=4` | Últimas ações em documentos, da mais nova para a mais antiga: `data_hora`, `ator`, `ator_tipo` (`usuario` ou `sistema`), `acao`, `objeto` e `versao`. Sem `limite`, devolve tudo |
+
+Os dois ficam bloqueados para o técnico (403).
+
 ### Demonstração
 
 | Método | Rota | O que faz |
 |---|---|---|
-| POST | `/demo/reiniciar` | Volta os dados ao estado inicial |
+| POST | `/demo/reiniciar` | Volta os dados ao estado inicial (inclusive documentos enviados e auditoria) |
 
 ## Roteiro de demonstração
 

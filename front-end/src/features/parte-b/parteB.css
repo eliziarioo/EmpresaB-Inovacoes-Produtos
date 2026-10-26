@@ -3,14 +3,31 @@
    INTELLIGENT TEAM — PARTE B
 ======================================== */
 
-/* Estrutura geral */
+/* Layout em largura total quando a Parte B estiver montada */
+body:has(.gestor-parte-b) {
+  display: block;
+  width: 100%;
+  margin: 0;
+}
+
+body:has(.gestor-parte-b) #root {
+  width: 100%;
+  max-width: none;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+/* ========================================
+   ESTRUTURA GERAL
+======================================== */
 
 .gestor-container {
   box-sizing: border-box;
   width: 100%;
-  max-width: 1280px;
   min-height: 100vh;
-  margin: 0 auto;
+  margin: 0;
   padding: 24px 32px 40px;
   background: #f3f4f1;
   color: #16201f;
@@ -183,7 +200,7 @@
 
 .gestor-colunas {
   display: grid;
-  grid-template-columns: 470px minmax(0, 1fr);
+  grid-template-columns: minmax(350px, 2fr) minmax(0, 3fr);
   align-items: start;
   gap: 24px;
 }
@@ -821,7 +838,9 @@
   font-size: 14px;
 }
 
-/* Responsividade da Equipe Recomendada */
+/* ========================================
+   RESPONSIVIDADE DA EQUIPE RECOMENDADA
+======================================== */
 
 @media (max-width: 1050px) {
   .gestor-equipe-colunas {
@@ -908,7 +927,7 @@
 }
 
 /* ========================================
-   RESPONSIVIDADE
+   RESPONSIVIDADE GERAL
 ======================================== */
 
 @media (max-width: 1000px) {
@@ -929,7 +948,6 @@
   .gestor-card {
     padding: 18px;
   }
-
 }
 
 @media (max-width: 480px) {
@@ -953,7 +971,6 @@
   }
 }
 
-
 /* ========================================
    CABEÇALHO TEMPORÁRIO DA PARTE B
    Referência: Figma Intelligent Team
@@ -961,9 +978,8 @@
 
 .gestor-parte-b {
   width: 100%;
-  max-width: 1280px;
   min-height: 100vh;
-  margin: 0 auto;
+  margin: 0;
   background: #f3f4f1;
 }
 
@@ -1080,7 +1096,9 @@
   color: #ffffff;
 }
 
-/* Responsividade do cabeçalho */
+/* ========================================
+   RESPONSIVIDADE DO CABEÇALHO
+======================================== */
 
 @media (max-width: 1050px) {
   .gestor-menu-superior {
@@ -1111,5 +1129,4 @@
   .gestor-menu-marca strong {
     font-size: 13px;
   }
-
 }

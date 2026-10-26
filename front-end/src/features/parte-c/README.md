@@ -12,7 +12,11 @@
 - `assets/`: ícones exportados do Figma e fontes locais, com licenças.
 - `parteC.css`: estilos restritos à classe `.tc-app`.
 
-O modo demonstrativo é o padrão e reproduz os textos e estados do Figma. O modo API utiliza exclusivamente os dados retornados pelo servidor: não acrescenta serviços, documentos ou informações pessoais fictícias para preencher a tela.
+O modo demonstrativo é o padrão e reproduz os textos e estados do Figma. No modo API, `GET /eu`, `GET /profissionais/{id}/servicos`, `GET /documentos`, `POST /chat` e `GET /documentos/{id}/arquivo` alimentam a interface. A ordem só aparece depois da aprovação da equipe pelo gestor. Informações ausentes no perfil retornado pela API são exibidas como não informadas, sem usar o perfil fictício do Figma para preenchê-las.
+
+Para testar com a API atual, crie `front-end/.env.local` com `VITE_TECNICO_MODO=api` e `VITE_API_URL=http://127.0.0.1:8000`, reinicie o Vite e use `paulo@empresa.com.br` / `tecnico123`. O campo visual do Figma é um e-mail; a API autentica pelo usuário `paulo`, extraído da parte antes do `@`.
+
+O download offline só publica trechos locais de documentos que continuam autorizados na agenda e cuja versão e SHA-256 do PDF coincidem com o índice incluído no frontend. A API atual não tem endpoint para receber os registros de consulta feitos offline: eles permanecem guardados no aparelho, sem recibo do servidor. A conferência de versões funciona com os endpoints existentes. A API também não fornece ao técnico serviços concluídos nem todos os detalhes do perfil exibidos no cenário do Figma.
 
 A API original é um protótipo com respostas pré-escritas. Nenhum dos modos implementa um modelo de IA. Sem internet, a busca retorna apenas trechos literais com seção e página.
 

@@ -15,8 +15,31 @@ const normalizar = (texto) =>
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase();
-export const modoPadrao = import.meta.env.VITE_TECNICO_MODO || "demo";
-const base = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+const ambiente = import.meta.env || {};
+export const modoPadrao = ambiente.VITE_TECNICO_MODO || "demo";
+const base = ambiente.VITE_API_URL || "http://127.0.0.1:8000";
+
+const dataCurta = (iso) => {
+  if (!iso) return null;
+  const [ano, mes, dia] = iso.split("-");
+  return ano && mes && dia ? `${dia}/${mes}/${ano}` : iso;
+};
+const erroDeAcesso = (mensagem, status) => {
+  const erro = new Error(mensagem);
+  erro.status = status;
+  return erro;
+};
+const documentoDaApi = (d) => ({
+  ...d,
+  titulo_inicio: `${d.codigo} · ${d.titulo}`,
+  versao_rotulo: d.tipo === "manual_fabricante" ? `rev. ${d.versao}` : `v${d.versao}`,
+  aprovado_em: dataCurta(d.aprovado_em),
+});
+const servicoDaApi = (s) => ({
+  ...s,
+  local: s.local_detalhe,
+  documentos_ids: s.documentos.map((d) => d.id),
+});
 
 export function criarServico(modo = modoPadrao) {
   const demo = modo === "demo";
@@ -86,12 +109,24 @@ export function criarServico(modo = modoPadrao) {
           documentos: structuredClone(documentosFigma),
           data_texto: "Sexta, 16 de outubro",
         };
-      // Extensão complementar: perfil próprio, concluídos e documentos autorizados.
-      return requisitar("/tecnico/contexto");
+      // A API atual expõe o perfil, os serviços aprovados e os documentos em rotas separadas.
+      const perfil = await requisitar("/eu");
+      if (perfil.tipo !== "tecnico" || !perfil.profissional_id)
+        throw erroDeAcesso("Entre com uma conta de técnico.", 403);
+      const [agenda, documentos] = await Promise.all([
+        requisitar(`/profissionais/${encodeURIComponent(perfil.profissional_id)}/servicos`),
+        requisitar("/documentos"),
+      ]);
+      return {
+        perfil: { ...perfil, primeiro_nome: agenda.profissional.primeiro_nome },
+        servicos: agenda.servicos.map(servicoDaApi),
+        documentos: documentos.filter((d) => d.status === "aprovado").map(documentoDaApi),
+        data_texto: agenda.data_texto,
+      };
     },
     async perguntar(ordem, pergunta) {
       if (!demo)
-        return requisitar("/tecnico/chat", {
+        return requisitar("/chat", {
           metodo: "POST",
           corpo: { ordem_id: ordem.ordem_id, pergunta },
         });
@@ -143,7 +178,7 @@ export function criarServico(modo = modoPadrao) {
     async abrirArquivo(doc) {
       if (!demo)
         return requisitar(
-          `/tecnico/documentos/${encodeURIComponent(doc.id)}/arquivo`,
+          doc.arquivo_url || `/documentos/${encodeURIComponent(doc.id)}/arquivo`,
           { blob: true },
         );
       if (!doc.url)
@@ -155,10 +190,32 @@ export function criarServico(modo = modoPadrao) {
       return r.blob();
     },
     async pacote(ordem) {
-      if (!demo)
-        return requisitar(
-          `/tecnico/ordens/${encodeURIComponent(ordem.ordem_id)}/pacote`,
+      if (!demo) {
+        // Verifica a autorização a cada download/atualização: uma ordem retirada
+        // da agenda não pode continuar sendo consultada a partir do cache.
+        const contexto = await this.carregar();
+        const autorizada = contexto.servicos.find((s) => s.ordem_id === ordem.ordem_id);
+        if (!autorizada)
+          throw erroDeAcesso("Este serviço não está mais autorizado para seu perfil.", 403);
+        const documentos = autorizada.documentos_ids.map((id) =>
+          contexto.documentos.find((d) => d.id === id),
         );
+        if (documentos.some((d) => !d || !d.arquivo_url))
+          throw erroDeAcesso("Um documento deste serviço não está disponível. Atualize o serviço com a equipe.", 409);
+        const validados = documentos.map((d) => {
+          const indice = trechos.find((t) => t.documento_id === d.id && t.versao === String(d.versao));
+          return { ...d, sha256: indice?.sha256 || null };
+        });
+        return {
+          ordem: autorizada,
+          documentos: validados,
+          // Só usa trechos cuja versão é a mesma informada pela API. O SHA-256
+          // é conferido em baixarPacote antes de publicar esses trechos.
+          trechos: trechos.filter((t) =>
+            validados.some((d) => d.id === t.documento_id && String(d.versao) === t.versao && d.sha256),
+          ),
+        };
+      }
       const documentos = documentosFigma.filter((d) =>
         ordem.documentos_ids.includes(d.id),
       );
@@ -172,10 +229,7 @@ export function criarServico(modo = modoPadrao) {
     },
     async sincronizar(eventos) {
       if (!demo)
-        return requisitar("/tecnico/sincronizar", {
-          metodo: "POST",
-          corpo: { eventos },
-        });
+        throw new Error("A API atual ainda não recebe os registros offline. Eles permanecem salvos neste aparelho.");
       // O modo demonstrativo tem um recibo local; não declara envio para servidor.
       for (const e of eventos) await guardar(`recibo-demo:${e.id}`, e);
       return {

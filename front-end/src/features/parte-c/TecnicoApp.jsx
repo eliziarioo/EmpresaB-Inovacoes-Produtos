@@ -110,8 +110,14 @@ export default function TecnicoApp({
         await guardar(`contexto:${usuario}`, remoto);
       } catch (e) {
         if (!cancelado) {
-          if (!e.status && local) { setOffline(true); setErro(""); }
-          else setErro(e.message);
+          if (e.status === 401 || e.status === 403) {
+            // Uma sessão recusada não deve continuar exibindo a agenda do cache.
+            setDados(null);
+            setErro(e.message);
+          } else if (!e.status && local) {
+            setOffline(true);
+            setErro("");
+          } else setErro(e.message);
         }
       }
     }
@@ -255,7 +261,18 @@ export default function TecnicoApp({
             "Este documento não foi baixado para o serviço selecionado.",
           );
         await registrar("documento_aberto", { documento_id: doc.id, pagina });
-      } else arquivo = await api.abrirArquivo(doc);
+      } else {
+        try {
+          arquivo = await api.abrirArquivo(doc);
+        } catch (e) {
+          if (e.status || !servico) throw e;
+          const p = await lerPacote(usuario, servico.ordem_id);
+          if (!p || p.desatualizado || p.revogado || !p.arquivos[doc.id]) throw e;
+          arquivo = p.arquivos[doc.id];
+          setOffline(true);
+          await registrar("documento_aberto", { documento_id: doc.id, pagina });
+        }
+      }
       setModal({ tipo: "documento", titulo: doc.titulo, arquivo, pagina });
     } catch (e) {
       informar("Documento indisponível", e.message);
@@ -314,6 +331,7 @@ export default function TecnicoApp({
             offline={offline}
             pendencias={fila}
             aoAbrir={abrirOffline}
+            modo={modo}
           />
           {erro && (
             <div className="tc-erro-global" role="alert">
@@ -440,6 +458,9 @@ export default function TecnicoApp({
                   : "Nenhum pacote baixado para este serviço."}
               </p>
               <p>{fila} registro(s) pendente(s).</p>
+              {modo === "api" && !!fila && (
+                <p>A API atual ainda não recebe esses registros. Eles continuam salvos somente neste aparelho.</p>
+              )}
               {offline && (
                 <>
                   <p>
@@ -476,7 +497,7 @@ export default function TecnicoApp({
                 disabled={offline || ocupado}
                 onClick={sincronizar}
               >
-                Conferir versões e sincronizar
+                {modo === "api" ? "Conferir versões" : "Conferir versões e sincronizar"}
               </button>
               {pacote && (
                 <button className="tc-link" onClick={removerPacote}>

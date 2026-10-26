@@ -866,6 +866,10 @@
   font-size: 14px;
 }
 
+.janela-estreita {
+  max-width: 480px;
+}
+
 @media (max-width: 600px) {
   .janela {
     padding: 20px;

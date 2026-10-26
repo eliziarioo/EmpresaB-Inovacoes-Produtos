@@ -9,6 +9,7 @@ import {
   IconeOlhoRiscado,
 } from '../components/Icones.jsx'
 import '../parteA.css'
+import RecuperarSenha from './RecuperarSenha.jsx'
 
 const DESTAQUES = [
   'Recomendação de equipe com justificativa',
@@ -47,6 +48,7 @@ function Login() {
   const [lembrar, setLembrar] = useState(true)
   const [erro, setErro] = useState('')
   const [enviando, setEnviando] = useState(false)
+  const [recuperando, setRecuperando] = useState(false)
 
   if (perfil) return <Navigate to={perfil.tela_inicial} replace />
 
@@ -171,7 +173,11 @@ function Login() {
               />
               Lembrar de mim
             </label>
-            <button type="button" className="link">
+            <button
+              type="button"
+              className="link"
+              onClick={() => setRecuperando(true)}
+            >
               Esqueci minha senha
             </button>
           </div>
@@ -187,6 +193,8 @@ function Login() {
           </button>
         </form>
       </section>
+
+      {recuperando && <RecuperarSenha aoFechar={() => setRecuperando(false)} />}
     </div>
   )
 }

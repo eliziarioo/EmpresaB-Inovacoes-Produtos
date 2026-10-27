@@ -1,5 +1,7 @@
 .pagina-titulo {
-  font-size: 30px;
+  font-size: 28px;
+  line-height: 1.25;
+  letter-spacing: -0.28px;
   font-weight: 600;
 }
 
@@ -271,7 +273,7 @@
 }
 
 .cartao-cabecalho h2 {
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 600;
 }
 
@@ -342,12 +344,12 @@
   border-radius: 14px;
   background: #ffffff;
   color: #55615f;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .contador strong {
   color: #ec4e00;
-  font-size: 40px;
+  font-size: 32px;
   font-weight: 600;
   line-height: 1.1;
 }
@@ -449,13 +451,13 @@
 }
 
 .alerta strong {
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 0.6px;
   text-transform: uppercase;
 }
 
 .alerta p {
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .alerta-critico svg,
@@ -883,6 +885,232 @@
   .janela-rodape {
     flex-wrap: wrap;
   }
+}
+
+.contadores-tres {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.contadores-tres .contador strong {
+  color: #16201f;
+}
+
+.contador-bloqueio {
+  border-color: #f0c4be;
+  background: #fbe7e4;
+  color: #8e2017;
+}
+
+.contadores-tres .contador-bloqueio strong {
+  color: #8e2017;
+}
+
+.filtros {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 24px;
+}
+
+.filtros-grupo {
+  display: flex;
+  gap: 8px;
+}
+
+.chip {
+  padding: 7px 16px;
+  border: 1px solid #c9cfc9;
+  border-radius: 999px;
+  background: #ffffff;
+  font-size: 15px;
+}
+
+.chip-ativo {
+  border-color: #16201f;
+  background: #16201f;
+  color: #ffffff;
+}
+
+.filtro-especialidade {
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid #c9cfc9;
+  border-radius: 8px;
+  background: #ffffff;
+  font-size: 15px;
+}
+
+.linha-clicavel {
+  cursor: pointer;
+}
+
+.linha-clicavel:hover td {
+  background: #f7f8f6;
+}
+
+.linha-selecionada td,
+.linha-selecionada:hover td {
+  background: #fbeedc;
+}
+
+.linha-selecionada td:first-child {
+  box-shadow: inset 3px 0 0 #ec4e00;
+}
+
+.profissional {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.profissional strong {
+  display: block;
+  font-weight: 600;
+}
+
+.avatar {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fbeedc;
+  color: #b83c00;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.avatar-grande {
+  width: 52px;
+  height: 52px;
+  font-size: 16px;
+}
+
+.avatar-bloqueado {
+  background: #fbe7e4;
+  color: #8e2017;
+}
+
+.certificacao {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.certificacao-em-dia {
+  color: #1f6b3a;
+}
+
+.certificacao-vencendo {
+  color: #7a3b00;
+}
+
+.certificacao-vencida {
+  color: #8e2017;
+}
+
+.detalhe-profissional {
+  display: flex;
+  flex-direction: column;
+}
+
+.detalhe-cabecalho {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e6e9e5;
+}
+
+.detalhe-nome {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.detalhe-nome strong {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.detalhe-nome span {
+  color: #55615f;
+}
+
+.detalhe-corpo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px 24px 24px;
+}
+
+.detalhe-aviso {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0 0 8px;
+  padding: 14px 16px;
+  border-radius: 10px;
+}
+
+.detalhe-aviso svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.detalhe-aviso-vencida {
+  background: #fbe7e4;
+  color: #8e2017;
+}
+
+.detalhe-aviso-vencendo {
+  background: #fbeedc;
+  color: #7a3b00;
+}
+
+.detalhe-titulo {
+  margin-top: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #d9ddd8;
+  color: #55615f;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.detalhe-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.detalhe-lista li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #e6e9e5;
+}
+
+.detalhe-lista li:last-child {
+  border-bottom: 0;
+}
+
+.detalhe-data {
+  color: #55615f;
+}
+
+.detalhe-botao {
+  margin-top: 12px;
 }
 
 @media (max-width: 1000px) {

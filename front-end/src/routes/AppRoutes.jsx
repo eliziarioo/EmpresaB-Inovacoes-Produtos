@@ -3,18 +3,11 @@ import Layout from '../components/Layout.jsx'
 import Login from '../features/parte-a/pages/Login.jsx'
 import Painel from '../features/parte-a/pages/Painel.jsx'
 import Documentos from '../features/parte-a/pages/Documentos.jsx'
+import Profissionais from '../features/parte-a/pages/Profissionais.jsx'
+import OrdensGestor from './OrdensGestor.jsx'
 import RotaProtegida from './RotaProtegida.jsx'
 
 const PERFIS_GESTAO = ['gestor', 'administrador']
-
-function EmBreve({ titulo }) {
-  return (
-    <>
-      <h1 className="pagina-titulo">{titulo}</h1>
-      <p className="pagina-apoio">Esta tela será ligada pelo grupo.</p>
-    </>
-  )
-}
 
 function AppRoutes() {
   return (
@@ -25,11 +18,8 @@ function AppRoutes() {
         <Route element={<Layout />}>
           <Route path="/painel" element={<Painel />} />
           <Route path="/documentos" element={<Documentos />} />
-          <Route path="/ordens" element={<EmBreve titulo="Ordens de serviço" />} />
-          <Route
-            path="/profissionais"
-            element={<EmBreve titulo="Profissionais" />}
-          />
+          <Route path="/ordens" element={<OrdensGestor />} />
+          <Route path="/profissionais" element={<Profissionais />} />
         </Route>
       </Route>
 

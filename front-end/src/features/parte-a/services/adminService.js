@@ -12,6 +12,10 @@ export function buscarAlertas() {
   return chamarApi('/alertas')
 }
 
+export function buscarProfissionais() {
+  return chamarApi('/profissionais')
+}
+
 export function buscarDocumentos() {
   return chamarApi('/documentos')
 }

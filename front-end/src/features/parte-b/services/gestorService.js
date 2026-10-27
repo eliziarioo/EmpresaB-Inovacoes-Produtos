@@ -1,4 +1,5 @@
 
+import { chamarApi } from "../../../services/api.js";
 import {
   ordemMock,
   equipeMock,
@@ -24,6 +25,11 @@ export async function aprovarEquipe(ordemId) {
   if (!ordemId) {
     throw new Error("Ordem não identificada.");
   }
+
+  await chamarApi(`/ordens/${ordemId}/equipe/aprovar`, {
+    metodo: "POST",
+    corpo: {}
+  });
 
   return {
     sucesso: true,

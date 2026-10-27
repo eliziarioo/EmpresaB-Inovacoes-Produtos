@@ -1,0 +1,398 @@
+[
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "Sumário",
+    "pagina": 2,
+    "trecho": "Sumário\nSeção\nTítulo\n1\nObjetivo\n2\nCampo de aplicação\n3\nReferências, definições e responsabilidades\n4\nCondições para início do serviço\n5\nExecução do reparo por solda\n6\nInspeção, testes e registros"
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "1",
+    "pagina": 2,
+    "trecho": "1. Objetivo\nEstabelecer os requisitos mínimos para a execução de reparos por solda em vasos de pressão, em\ninstalações offshore e onshore, de modo a preservar a integridade do equipamento e a segurança\ndas pessoas envolvidas no serviço."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "2.1",
+    "pagina": 2,
+    "trecho": "2.1 Este procedimento se aplica a reparos por solda em vasos de pressão enquadrados na NR-13,\nincluindo bocais, costuras, chapas do casco e suportes, executados por equipes próprias ou\ncontratadas."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "2.2",
+    "pagina": 2,
+    "trecho": "2.2 Não se aplica a tubulações, tanques de armazenamento, serviços de pintura anticorrosiva nem a\nmanutenção elétrica."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "2.3",
+    "pagina": 2,
+    "trecho": "2.3 Quando houver diferença entre este procedimento e o procedimento do operador da instalação,\nprevalece o requisito mais restritivo."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "3",
+    "pagina": 3,
+    "trecho": "3. Referências, definições e responsabilidades"
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "3.1",
+    "pagina": 3,
+    "trecho": "3.1 Referências\n NR-13: caldeiras, vasos de pressão, tubulações e tanques metálicos de armazenamento.\n NR-33: segurança e saúde nos trabalhos em espaços confinados.\n NR-35: trabalho em altura.\n Normas de qualificação de soldadores e de procedimentos de soldagem indicadas no projeto e no\nprontuário do equipamento.\n Manual do fabricante do equipamento e prontuário do vaso."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "3.2",
+    "pagina": 3,
+    "trecho": "3.2 Definições\nTermo\nSignificado\nCBSP\nCurso Básico de Segurança em Plataforma.\nHUET\nTreinamento de escape de helicóptero submerso (Helicopter Underwater Escape\nTraining).\nPT\nPermissão de trabalho, emitida para um local, um turno e um escopo definidos.\nTrabalho a quente\nAtividade que gera chama, faísca ou calor capaz de inflamar atmosfera ou\nmateriais, como a soldagem.\nBloqueio e etiquetagem\nIsolamento de energias e fluidos do equipamento, com travas e etiquetas de\nidentificação.\nSoldador qualificado\nProfissional com qualificação válida para o procedimento de soldagem do\nequipamento.\nProfissional habilitado NR-13\nEngenheiro com registro profissional ativo e habilitação para responder pela\ninspeção do vaso."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "3.3",
+    "pagina": 4,
+    "trecho": "3.3 Responsabilidades\nFunção\nResponsabilidade\nGestor de operações\nAprovar a equipe, acompanhar a conformidade das habilitações e decidir\nsobre replanejamento.\nEngenheiro responsável pela\ninspeção\nDefinir o escopo do reparo, acompanhar a execução, liberar o equipamento e\ndefinir ensaios e testes.\nSoldador qualificado\nExecutar a soldagem conforme o procedimento de soldagem e interromper o\nserviço diante de qualquer desvio.\nDemais membros da equipe\nApoiar a execução, manter a área organizada e cumprir as medidas da APR.\nSegurança da instalação\nEmitir a PT, liberar o trabalho a quente e acompanhar o isolamento do\nequipamento."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "3.4",
+    "pagina": 4,
+    "trecho": "3.4 Documentos que acompanham a ordem de serviço\nPara cada ordem de serviço de reparo por solda, a equipe recebe e consulta apenas documentos\naprovados e vigentes: este procedimento, o manual do equipamento e a APR do trabalho em altura,\nquando aplicável. Documentos de outros equipamentos não devem ser usados como referência."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "4",
+    "pagina": 5,
+    "trecho": "4. Condições para início do serviço\nAntes do embarque, a equipe é validada contra a matriz de habilitações vigente (versão 1.2,\naprovada pela área de SST em 01/10/2026). A validação considera a data do serviço, e não a data\nem que a equipe foi escalada."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "4.1",
+    "pagina": 5,
+    "trecho": "4.1 Qualificação e habilitação da equipe"
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "4.1.1",
+    "pagina": 5,
+    "trecho": "4.1.1 Todo reparo por solda em vaso de pressão exige, no mínimo, um soldador qualificado e um\nprofissional habilitado NR-13 responsável pela inspeção. Os demais requisitos dependem das\ncondições do serviço:\nCondição do serviço\nRequisito\nQuem deve atender\nInstalação offshore\nCBSP e HUET válidos\nToda a equipe\nTrabalho em altura\nNR-35 válida\nQuem trabalha no andaime ou\nem altura\nReparo por solda\nQualificação de soldador válida\nPelo menos um profissional\nEquipamento é vaso de pressão\nProfissional habilitado NR-13, com registro\nprofissional ativo\nEngenheiro responsável pela\ninspeção\nEntrada no interior do vaso\nNR-33 válida\nTodos que entram no espaço\nconfinado"
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "4.1.2",
+    "pagina": 5,
+    "trecho": "4.1.2 A validade dos documentos é conferida na data do serviço. Um documento que vence durante\no serviço é tratado como vencido."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "4.1.3",
+    "pagina": 6,
+    "trecho": "4.1.3 Profissionais bloqueados\nProfissional com documento exigido vencido ou ausente não deve ser escalado, ainda que seja o\núnico disponível. Nesse caso, a ordem de serviço permanece sem equipe elegível e o gestor decide\nsobre o replanejamento ou a regularização do documento."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "4.1.4",
+    "pagina": 6,
+    "trecho": "4.1.4 Disponibilidade e conflitos de agenda\nUm profissional não pode estar indicado em duas ordens de serviço na mesma data. Havendo\nconflito, a aprovação da equipe em uma das ordens devolve a outra para replanejamento.\nProfissionais em folga ou embarcados em outro serviço no período são considerados indisponíveis."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "4.1.5",
+    "pagina": 6,
+    "trecho": "4.1.5 Conferência no embarque\nNo dia do embarque, o responsável pela equipe confere:\n a presença de todos os profissionais aprovados;\n a validade dos documentos exigidos para a função de cada um;\n a disponibilidade dos equipamentos de proteção e das ferramentas previstas na APR."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "4.1.6",
+    "pagina": 6,
+    "trecho": "4.1.6 Substituição de membro da equipe\nA substituição de qualquer profissional após a aprovação exige nova validação contra a matriz de\nhabilitações e nova aprovação do gestor de operações. O dossiê de conformidade é atualizado com\na mudança."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "4.2",
+    "pagina": 7,
+    "trecho": "4.2 Permissão de trabalho e isolamento do equipamento"
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "4.2.1",
+    "pagina": 7,
+    "trecho": "4.2.1 Nenhuma atividade de solda deve ser iniciada sem a permissão de trabalho válida e o\nisolamento do equipamento, conforme os itens 4.2.2 a 4.2.5. O descumprimento de qualquer um\ndeles suspende o serviço."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "4.2.2",
+    "pagina": 7,
+    "trecho": "4.2.2 A permissão de trabalho deve estar emitida e assinada a bordo antes do início de qualquer\natividade."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "4.2.3",
+    "pagina": 7,
+    "trecho": "4.2.3 O vaso deve estar despressurizado, drenado e isolado, com bloqueio e etiquetagem de todas\nas fontes de energia e de fluidos."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "4.2.4",
+    "pagina": 7,
+    "trecho": "4.2.4 O trabalho a quente deve ser liberado pela segurança da instalação, após a verificação da\natmosfera e da área ao redor."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "4.2.5",
+    "pagina": 7,
+    "trecho": "4.2.5 O início do serviço deve ser registrado no aplicativo pelo responsável da equipe, com data e\nhora."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "4.2.6",
+    "pagina": 7,
+    "trecho": "4.2.6 A permissão de trabalho vale apenas para o turno, o local e o escopo nela indicados. Qualquer\nmudança de escopo exige nova permissão."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "4.2.7",
+    "pagina": 7,
+    "trecho": "4.2.7 Se houver dúvida sobre as condições de isolamento, o serviço não começa. A dúvida é levada\nao engenheiro responsável pela inspeção e à segurança da instalação."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "5.1",
+    "pagina": 8,
+    "trecho": "5.1 Preparação da área\n Andaime inspecionado e liberado antes do uso.\n Área delimitada e sinalizada, com extintores posicionados e vigia de fogo designado.\n Materiais combustíveis removidos ou protegidos no raio definido pela segurança da instalação."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "5.2",
+    "pagina": 8,
+    "trecho": "5.2 Soldagem\nA soldagem segue o procedimento de soldagem qualificado indicado no prontuário do equipamento,\nincluindo materiais de adição, preparação da junta e controles de temperatura. Nenhum parâmetro é\nalterado sem autorização do engenheiro responsável pela inspeção."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "5.3",
+    "pagina": 8,
+    "trecho": "5.3 Trabalho em altura\nQuando o acesso ao ponto de reparo for feito por andaime, a equipe cumpre a APR de trabalho em\naltura vigente, usa cinto tipo paraquedista com dupla ancoragem e mantém comunicação com quem\npermanece no nível."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "5.4",
+    "pagina": 8,
+    "trecho": "5.4 Interrupção do serviço\nQualquer integrante da equipe pode e deve interromper o serviço diante de condição insegura,\nmudança de escopo, perda de comunicação ou alarme da instalação. A retomada depende de nova\navaliação pelo responsável da equipe e, se necessário, de nova permissão de trabalho."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "6.1",
+    "pagina": 9,
+    "trecho": "6.1 Inspeção do reparo\nO reparo é inspecionado visualmente e por ensaios definidos pelo profissional habilitado NR-13, que\nregistra o resultado e libera o equipamento para retorno à operação."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "6.2",
+    "pagina": 9,
+    "trecho": "6.2 Ensaios e testes\nOs ensaios e o teste após o reparo são definidos pelo engenheiro responsável pela inspeção, com\nbase no projeto e no prontuário do equipamento. Este procedimento não fixa valores de pressão de\nteste, e valores de outros equipamentos não devem ser usados."
+  },
+  {
+    "documento_id": "doc-001",
+    "codigo": "PR-SOL-014",
+    "versao": "3",
+    "sha256": "4b48e081268850b4c0506a7fb5ff513fad19c2e1b217acf7a413e9bbeb4d342a",
+    "secao": "6.3",
+    "pagina": 9,
+    "trecho": "6.3 Registros\n Registro de execução no aplicativo, com início, interrupções e término.\n Dossiê de conformidade da equipe, gerado na aprovação e atualizado a cada mudança.\n Atualização do prontuário do equipamento com o reparo realizado.\nAprovação do procedimento\nFunção\nNome\nData\nElaboração\nEngenharia de Integridade (fictícia)\n07/2026\nVerificação\nÁrea de SST (fictícia)\n08/2026\nAprovação\nComitê de Procedimentos (fictício)\n08/2026"
+  },
+  {
+    "documento_id": "doc-002",
+    "codigo": "MAN-V-301",
+    "versao": "revisão 2",
+    "sha256": "c1fdcd3999c27020e423afd15a3b08d08452c021712f869da201ac42601282dc",
+    "secao": "1",
+    "pagina": 2,
+    "trecho": "1. Descrição geral\nO V-301 é um vaso de pressão vertical, instalado no módulo 3 da plataforma, usado na separação e\nno condicionamento do fluido do processo. O casco é de aço-carbono, com bocais flangeados e uma\nboca de visita para acesso interno."
+  },
+  {
+    "documento_id": "doc-002",
+    "codigo": "MAN-V-301",
+    "versao": "revisão 2",
+    "sha256": "c1fdcd3999c27020e423afd15a3b08d08452c021712f869da201ac42601282dc",
+    "secao": "2",
+    "pagina": 2,
+    "trecho": "2. Identificação e prontuário\nOs dados de projeto do equipamento constam da placa de identificação e do prontuário mantido pela\ninstalação. Este manual não reproduz esses dados e não os substitui; em caso de dúvida, vale o\nprontuário."
+  },
+  {
+    "documento_id": "doc-002",
+    "codigo": "MAN-V-301",
+    "versao": "revisão 2",
+    "sha256": "c1fdcd3999c27020e423afd15a3b08d08452c021712f869da201ac42601282dc",
+    "secao": "3",
+    "pagina": 2,
+    "trecho": "3. Bocais e acessos\nIdentificação\nFunção\nObservação\nN1\nBocal de entrada do fluido\nFlangeado, no topo do casco.\nN2\nBocal de saída\nFlangeado, na lateral inferior. Atenção especial na abertura\ne no fechamento.\nN3\nDreno\nNa base do vaso, com válvula dupla.\nN4\nInstrumentação\nMedição de nível e de temperatura.\nMH1\nBoca de visita\nAcesso ao interior. Entrada exige NR-33."
+  },
+  {
+    "documento_id": "doc-002",
+    "codigo": "MAN-V-301",
+    "versao": "revisão 2",
+    "sha256": "c1fdcd3999c27020e423afd15a3b08d08452c021712f869da201ac42601282dc",
+    "secao": "4.1",
+    "pagina": 3,
+    "trecho": "4.1 Reparos por solda no casco, nos bocais ou nos suportes só podem ser feitos com procedimento\nde soldagem qualificado e sob acompanhamento de profissional habilitado NR-13, conforme o\nprocedimento PR-SOL-014."
+  },
+  {
+    "documento_id": "doc-002",
+    "codigo": "MAN-V-301",
+    "versao": "revisão 2",
+    "sha256": "c1fdcd3999c27020e423afd15a3b08d08452c021712f869da201ac42601282dc",
+    "secao": "4.2",
+    "pagina": 3,
+    "trecho": "4.2 Todo reparo é registrado no prontuário do equipamento, com descrição do serviço, equipe e\nresultado da inspeção."
+  },
+  {
+    "documento_id": "doc-002",
+    "codigo": "MAN-V-301",
+    "versao": "revisão 2",
+    "sha256": "c1fdcd3999c27020e423afd15a3b08d08452c021712f869da201ac42601282dc",
+    "secao": "4.3",
+    "pagina": 3,
+    "trecho": "4.3 O isolamento do vaso antes de qualquer intervenção inclui despressurização, drenagem,\nbloqueio e etiquetagem de todas as fontes de energia e de fluidos."
+  },
+  {
+    "documento_id": "doc-002",
+    "codigo": "MAN-V-301",
+    "versao": "revisão 2",
+    "sha256": "c1fdcd3999c27020e423afd15a3b08d08452c021712f869da201ac42601282dc",
+    "secao": "5",
+    "pagina": 3,
+    "trecho": "5. Inspeção\nAs inspeções periódicas seguem a NR-13 e o plano de inspeção da instalação. O engenheiro\nresponsável pela inspeção define ensaios e testes com base no projeto e no prontuário, e registra os\nresultados."
+  },
+  {
+    "documento_id": "doc-002",
+    "codigo": "MAN-V-301",
+    "versao": "revisão 2",
+    "sha256": "c1fdcd3999c27020e423afd15a3b08d08452c021712f869da201ac42601282dc",
+    "secao": "6",
+    "pagina": 3,
+    "trecho": "6. Segurança\n Nunca abrir flanges ou bocais com o vaso pressurizado.\n Verificar atmosfera antes de qualquer entrada no interior do vaso.\n Manter a identificação do equipamento visível e legível.\n Interromper qualquer atividade diante de vazamento, ruído anormal ou alarme.\n FICTÍCIO\nManual do V-301 · Revisão 2\nManual do fabricante\nDOCUMENTO FICTÍCIO - uso exclusivo no protótipo do Copiloto de Operações de Campo\nPágina 3 de 3"
+  },
+  {
+    "documento_id": "doc-003",
+    "codigo": "APR",
+    "versao": "5",
+    "sha256": "85fd4ec0108a8731a1c923cd40120154957dddf837b46da22af7276f61ca3ecc",
+    "secao": "Lista de verificação antes de subir",
+    "pagina": 2,
+    "trecho": "Lista de verificação antes de subir\nItem\nConforme\nNR-35 válida para todos que trabalham em altura\n[ ] Sim [ ] Não\nCinto tipo paraquedista inspecionado, com dupla ancoragem\n[ ] Sim [ ] Não\nPontos de ancoragem identificados e adequados\n[ ] Sim [ ] Não\nAndaime montado, inspecionado e etiquetado\n[ ] Sim [ ] Não\nCondições climáticas e de vento verificadas\n[ ] Sim [ ] Não\nÁrea abaixo isolada e sinalizada\n[ ] Sim [ ] Não\nPlano de resgate conhecido pela equipe\n[ ] Sim [ ] Não\nPermissão de trabalho emitida e assinada a bordo\n[ ] Sim [ ] Não"
+  },
+  {
+    "documento_id": "doc-003",
+    "codigo": "APR",
+    "versao": "5",
+    "sha256": "85fd4ec0108a8731a1c923cd40120154957dddf837b46da22af7276f61ca3ecc",
+    "secao": "Plano de resgate",
+    "pagina": 2,
+    "trecho": "Plano de resgate\nEm caso de queda ou suspensão no cinto, o integrante mais próximo aciona a segurança da\ninstalação pelo rádio e inicia o resgate conforme o plano da plataforma. Ninguém realiza resgate sem\nequipamento adequado e sem acionar a segurança."
+  },
+  {
+    "documento_id": "doc-003",
+    "codigo": "APR",
+    "versao": "5",
+    "sha256": "85fd4ec0108a8731a1c923cd40120154957dddf837b46da22af7276f61ca3ecc",
+    "secao": "Assinaturas",
+    "pagina": 2,
+    "trecho": "Assinaturas\nNome\nFunção na OS\nAssinatura\nCarlos Mendes\nEngenheiro de inspeção\nAna Ribeiro\nSoldadora qualificada\nPaulo Souza\nCaldeireiro"
+  }
+]

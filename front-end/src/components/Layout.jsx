@@ -5,7 +5,7 @@ import './Layout.css'
 
 const ABAS = [
   { para: '/painel', texto: 'Painel' },
-  { para: '/ordens', texto: 'Ordens de serviço' },
+  { para: '/ordens', texto: 'Ordens de serviço', soGestor: true },
   { para: '/profissionais', texto: 'Profissionais' },
   { para: '/documentos', texto: 'Documentos' },
 ]
@@ -24,7 +24,9 @@ function Layout() {
         </div>
 
         <nav className="topo-abas" aria-label="Principal">
-          {ABAS.map((aba) => (
+          {ABAS.filter(
+            (aba) => !aba.soGestor || perfil.tipo === 'gestor',
+          ).map((aba) => (
             <NavLink
               key={aba.para}
               to={aba.para}

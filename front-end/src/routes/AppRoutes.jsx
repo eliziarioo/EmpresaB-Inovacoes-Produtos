@@ -9,6 +9,7 @@ import OrdensGestor from './OrdensGestor.jsx'
 import RotaProtegida from './RotaProtegida.jsx'
 
 const PERFIS_GESTAO = ['gestor', 'administrador']
+const PERFIS_ORDENS = ['gestor']
 const PERFIS_TECNICO = ['tecnico']
 
 function AppRoutes() {
@@ -20,7 +21,9 @@ function AppRoutes() {
         <Route element={<Layout />}>
           <Route path="/painel" element={<Painel />} />
           <Route path="/documentos" element={<Documentos />} />
-          <Route path="/ordens" element={<OrdensGestor />} />
+          <Route element={<RotaProtegida perfis={PERFIS_ORDENS} />}>
+            <Route path="/ordens" element={<OrdensGestor />} />
+          </Route>
           <Route path="/profissionais" element={<Profissionais />} />
         </Route>
       </Route>

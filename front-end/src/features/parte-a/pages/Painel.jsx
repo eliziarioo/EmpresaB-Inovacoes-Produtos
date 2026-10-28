@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../../../context/useAuth.js'
 import {
   IconeAlerta,
   IconeBloqueio,
@@ -83,6 +84,7 @@ function capitalizar(texto) {
 }
 
 function Painel() {
+  const { perfil } = useAuth()
   const [painel, setPainel] = useState(null)
   const [ordens, setOrdens] = useState([])
   const [alertas, setAlertas] = useState([])
@@ -127,9 +129,11 @@ function Painel() {
           <h1 className="pagina-titulo">Painel de operações</h1>
           <p className="pagina-apoio">{formatarDia(painel.data_referencia)}</p>
         </div>
-        <Link to="/ordens" className="botao-principal botao-auto">
-          + Nova ordem de serviço
-        </Link>
+        {perfil.tipo !== 'administrador' && (
+          <Link to="/ordens" className="botao-principal botao-auto">
+            + Nova ordem de serviço
+          </Link>
+        )}
       </div>
 
       <section className="contadores" aria-label="Resumo">

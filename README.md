@@ -86,12 +86,12 @@ Objetivo da área: definir a solução proposta e mostrar como o produto atende 
 - [x] Identificação do problema e da oportunidade de negócio
 - [x] Definição da proposta de valor e do público inicialmente considerado
 - [x] Descrição do escopo, das funcionalidades e da lógica de funcionamento do produto
-- [ ] Protótipo demonstrativo, utilizando recursos compatíveis com o nível de desenvolvimento esperado
-- [ ] Justificativa das principais decisões e dos diferenciais da solução
+- [x] Protótipo demonstrativo, utilizando recursos compatíveis com o nível de desenvolvimento esperado
+- [x] Justificativa das principais decisões e dos diferenciais da solução
 
 ### Status do projeto
 
 - [x] Exploração inicial
 - [x] Definição da proposta-base
-- [ ] Desenvolvimento e validação
-- [ ] Consolidação final
+- [x] Desenvolvimento e validação
+- [x] Consolidação final
